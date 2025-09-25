@@ -1,11 +1,9 @@
 configuration {
-    modi: "drun,run,window";
+    modi: "drun";
     font: "SF Pro Display 12";
     show-icons: true;
     icon-theme: "Papirus";
-    display-drun: " Apps";
-    display-run: " Run";
-    display-window: " Windows";
+    display-drun: "";
     drun-display-format: "{name}";
     disable-history: false;
     hide-scrollbar: true;
@@ -13,14 +11,16 @@ configuration {
     hover-select: true;
     eh: 1;
     auto-select: false;
-    parse-hosts: true;
-    parse-known-hosts: true;
-    combi-modi: "window,drun,run";
+    parse-hosts: false;
+    parse-known-hosts: false;
     matching: "fuzzy";
     scroll-method: 0;
     normalize-match: true;
     steal-focus: false;
     m: "-5";
+    show-match: false;
+    drun-show-actions: false;
+    drun-match-fields: "name,generic,exec,categories";
 }
 
 * {
@@ -51,7 +51,7 @@ window {
     anchor: center;
     fullscreen: false;
     width: 600px;
-    height: 400px;
+    height: 300px;
     
     background-color: @bg-primary;
     border: 2px solid;
@@ -72,7 +72,7 @@ mainbox {
     border-radius: 0px;
     border-color: transparent;
     background-color: transparent;
-    children: [ "inputbar", "message", "listview" ];
+    children: [ "inputbar", "listview" ];
 }
 
 inputbar {
@@ -85,7 +85,7 @@ inputbar {
     border-color: @border-color;
     background-color: @bg-secondary;
     text-color: @text-primary;
-    children: [ "prompt", "textbox-prompt-colon", "entry" ];
+    children: [ "entry" ];
 }
 
 prompt {
@@ -135,7 +135,7 @@ textbox {
 listview {
     enabled: true;
     columns: 2;
-    lines: 8;
+    lines: 6;
     cycle: true;
     dynamic: true;
     scrollbar: false;
@@ -227,7 +227,7 @@ element alternate.active {
 element-icon {
     background-color: transparent;
     text-color: inherit;
-    size: 24px;
+    size: 28px;
     cursor: inherit;
     border-radius: 8px;
 }
