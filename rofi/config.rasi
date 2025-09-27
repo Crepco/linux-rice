@@ -24,18 +24,20 @@ configuration {
 }
 
 * {
-    /* Color palette - 50% more transparent */
-    bg-primary: rgba(15, 23, 42, 0.45);
-    bg-secondary: rgba(30, 41, 59, 0.4);
-    bg-selected: rgba(59, 130, 246, 0.3);
-    bg-hover: rgba(71, 85, 105, 0.2);
+    /* Color palette - Cyberpunk/Synthwave theme */
+    bg-primary: rgba(10, 10, 15, 0.45);
+    bg-secondary: rgba(20, 20, 30, 0.4);
+    bg-selected: rgba(255, 64, 129, 0.3);
+    bg-hover: rgba(100, 50, 100, 0.2);
     
-    text-primary: rgba(241, 245, 249, 1.0);
-    text-secondary: rgba(148, 163, 184, 1.0);
+    text-primary: rgba(255, 255, 255, 1.0);
+    text-secondary: rgba(200, 150, 255, 0.8);
     text-selected: rgba(255, 255, 255, 1.0);
     
-    border-color: rgba(59, 130, 246, 0.3);
-    separator-color: rgba(71, 85, 105, 0.2);
+    border-color: rgba(255, 64, 129, 0.6);
+    separator-color: rgba(100, 200, 255, 0.3);
+    accent-pink: rgba(255, 64, 129, 1.0);
+    accent-blue: rgba(100, 200, 255, 1.0);
     
     /* Global properties */
     background-color: transparent;
@@ -55,7 +57,7 @@ window {
     
     background-color: @bg-primary;
     border: 2px solid;
-    border-color: @border-color;
+    border-color: @accent-pink;
     border-radius: 20px;
     
     transparency: "real";
@@ -82,7 +84,7 @@ inputbar {
     padding: 10px 15px;
     border: 0px solid;
     border-radius: 15px;
-    border-color: @border-color;
+    border-color: @accent-blue;
     background-color: @bg-secondary;
     text-color: @text-primary;
     children: [ "entry" ];
@@ -91,16 +93,16 @@ inputbar {
 prompt {
     enabled: true;
     background-color: transparent;
-    text-color: @text-primary;
+    text-color: @accent-pink;
     font: "SF Pro Display Bold 14";
 }
 
 textbox-prompt-colon {
     enabled: true;
     expand: false;
-    str: ":";
+    str: ">";
     background-color: transparent;
-    text-color: @text-secondary;
+    text-color: @accent-blue;
     margin: 0px 5px 0px 0px;
 }
 
@@ -109,7 +111,7 @@ entry {
     background-color: transparent;
     text-color: @text-primary;
     cursor: text;
-    placeholder: "Search applications...";
+    placeholder: "App....";
     placeholder-color: @text-secondary;
     font: "SF Pro Display 13";
 }
@@ -197,6 +199,8 @@ element selected.normal {
     background-color: @bg-selected;
     text-color: @text-selected;
     border-radius: 12px;
+    border: 1px solid;
+    border-color: @accent-pink;
 }
 
 element selected.urgent {
