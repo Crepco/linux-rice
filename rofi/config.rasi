@@ -1,283 +1,186 @@
-configuration {
-    modi: "drun";
-    font: "SF Pro Display 12";
-    show-icons: true;
-    icon-theme: "Papirus";
-    display-drun: "";
-    drun-display-format: "{name}";
-    disable-history: false;
-    hide-scrollbar: true;
-    sidebar-mode: false;
-    hover-select: true;
-    eh: 1;
-    auto-select: false;
-    parse-hosts: false;
-    parse-known-hosts: false;
-    matching: "fuzzy";
-    scroll-method: 0;
-    normalize-match: true;
-    steal-focus: false;
-    m: "-5";
-    show-match: false;
-    drun-show-actions: false;
-    drun-match-fields: "name,generic,exec,categories";
-}
+@theme "/dev/null"
+@import "colors.rasi"
 
-* {
-    /* Color palette - Cyberpunk/Synthwave theme */
-    bg-primary: rgba(10, 10, 15, 0.45);
-    bg-secondary: rgba(20, 20, 30, 0.4);
-    bg-selected: rgba(255, 64, 129, 0.3);
-    bg-hover: rgba(100, 50, 100, 0.2);
-    
-    text-primary: rgba(255, 255, 255, 1.0);
-    text-secondary: rgba(200, 150, 255, 0.8);
-    text-selected: rgba(255, 255, 255, 1.0);
-    
-    border-color: rgba(255, 64, 129, 0.6);
-    separator-color: rgba(100, 200, 255, 0.3);
-    accent-pink: rgba(255, 64, 129, 1.0);
-    accent-blue: rgba(100, 200, 255, 1.0);
-    
-    /* Global properties */
-    background-color: transparent;
-    text-color: @text-primary;
-    border: 0px;
-    margin: 0px;
-    padding: 0px;
-    spacing: 0px;
+configuration {
+	modi: "window,run,drun";
+	display-drun: "Applications";
+	display-window: "Windows";
+	display-run: "Run";
+	drun-display-format: "{icon} {name}";
+	font: "JetBrainsMono Nerd Font 10";
+	show-icons: true;
+	icon-theme: "Colloid";
 }
 
 window {
-    location: center;
-    anchor: center;
-    fullscreen: false;
-    width: 600px;
-    height: 300px;
-    
-    background-color: @bg-primary;
-    border: 2px solid;
-    border-color: @accent-pink;
-    border-radius: 20px;
-    
-    transparency: "real";
-    padding: 0px;
-    spacing: 0px;
+    /* properties for window widget */
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       1000px;
+    x-offset:                    0px;
+    y-offset:                    0px;
+
+    /* properties for all widgets */
+    enabled:                     true;
+    border:			 2px solid;
+    border-color:		 @secondary-container;
+    border-radius:               15px;
+    cursor:                      "default";
+    background-color:            @on-primary-fixed;
 }
 
 mainbox {
-    enabled: true;
-    spacing: 0px;
-    margin: 0px;
-    padding: 12px;
-    border: 0px solid;
-    border-radius: 0px;
-    border-color: transparent;
-    background-color: transparent;
-    children: [ "inputbar", "listview" ];
+    enabled:                     true;
+    spacing:                     0px;
+    background-color:            transparent;
+    orientation:                 horizontal;
+    children:                    [ "imagebox", "listbox" ];
+}
+
+imagebox {
+    padding:                     20px;
+    background-color:            transparent;
+    background-image:            url("/home/crepco/Downloads/wallpaper2.png", height);
+    orientation:                 vertical;
+    children:                    [ "inputbar", "dummy", "mode-switcher" ];
+}
+
+listbox {
+    spacing:                     20px;
+    padding:                     20px;
+    background-color:            transparent;
+    orientation:                 vertical;
+    children:                    [ "message", "listview" ];
+}
+
+dummy {
+    background-color:            transparent;
 }
 
 inputbar {
-    enabled: true;
-    spacing: 10px;
-    margin: 0px 0px 12px 0px;
-    padding: 10px 15px;
-    border: 0px solid;
-    border-radius: 15px;
-    border-color: @accent-blue;
-    background-color: @bg-secondary;
-    text-color: @text-primary;
-    children: [ "entry" ];
+    enabled:                     true;
+    spacing:                     10px;
+    padding:                     15px;
+    border-radius:               10px;
+    background-color:		 @on-primary;
+    text-color:			 @on-surface;
+    children:                    [ "textbox-prompt-colon", "entry" ];
 }
-
-prompt {
-    enabled: true;
-    background-color: transparent;
-    text-color: @accent-pink;
-    font: "SF Pro Display Bold 14";
-}
-
 textbox-prompt-colon {
-    enabled: true;
-    expand: false;
-    str: ">";
-    background-color: transparent;
-    text-color: @accent-blue;
-    margin: 0px 5px 0px 0px;
+    enabled:                     true;
+    expand:                      false;
+    str:                         "  ";
+    background-color:            inherit;
+    text-color:                  inherit;
 }
-
 entry {
-    enabled: true;
-    background-color: transparent;
-    text-color: @text-primary;
-    cursor: text;
-    placeholder: "App....";
-    placeholder-color: @text-secondary;
-    font: "SF Pro Display 13";
+    enabled:                     true;
+    background-color:            inherit;
+    text-color:                  inherit;
+    cursor:                      text;
+    placeholder:                 "Search";
+    placeholder-color:           inherit;
 }
 
-message {
-    enabled: true;
-    margin: 0px 0px 15px 0px;
-    padding: 15px;
-    border: 0px solid;
-    border-radius: 12px;
-    border-color: @border-color;
-    background-color: @bg-secondary;
-    text-color: @text-primary;
+mode-switcher{
+    enabled:                     true;
+    spacing:                     20px;
+    background-color:            transparent;
+    text-color:                  @primary-fixed;
 }
-
-textbox {
-    background-color: transparent;
-    text-color: @text-primary;
-    vertical-align: 0.5;
-    horizontal-align: 0.0;
+button {
+    padding:                     15px;
+    border-radius:               10px;
+    background-color:            @on-primary;
+    text-color:                  inherit;
+    cursor:                      pointer;
+}
+button selected {
+    background-color:            @primary;
+    text-color:                  @on-secondary;
 }
 
 listview {
-    enabled: true;
-    columns: 2;
-    lines: 6;
-    cycle: true;
-    dynamic: true;
-    scrollbar: false;
-    layout: vertical;
-    reverse: false;
-    fixed-height: true;
-    fixed-columns: true;
+    enabled:                     true;
+    columns:                     1;
+    lines:                       8;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
     
-    spacing: 8px;
-    margin: 0px;
-    padding: 0px;
-    border: 0px solid;
-    border-radius: 0px;
-    border-color: transparent;
-    background-color: transparent;
-    text-color: @text-primary;
-    cursor: "default";
-}
-
-scrollbar {
-    width: 4px;
-    border: 0;
-    border-radius: 10px;
-    background-color: @bg-secondary;
-    handle-width: 8px;
-    handle-color: @border-color;
-    handle-border-radius: 10px;
+    spacing:                     10px;
+    background-color:            transparent;
+    text-color:                  @on-surface;
+    cursor:                      "default";
 }
 
 element {
-    enabled: true;
-    spacing: 10px;
-    margin: 0px;
-    padding: 8px 12px;
-    border: 0px solid;
-    border-radius: 12px;
-    border-color: transparent;
-    background-color: transparent;
-    text-color: @text-primary;
-    cursor: pointer;
+    enabled:                     true;
+    spacing:                     15px;
+    padding:                     8px;
+    border-radius:               10px;
+    background-color:            transparent;
+    text-color:                  @on-surface;
+    cursor:                      pointer;
 }
-
 element normal.normal {
-    background-color: transparent;
-    text-color: @text-primary;
+    background-color:            inherit;
+    text-color:                  inherit;
 }
-
 element normal.urgent {
-    background-color: rgba(239, 68, 68, 0.1);
-    text-color: rgba(239, 68, 68, 1.0);
+    background-color:            @error;
+    text-color:                  @on-surface;
 }
-
 element normal.active {
-    background-color: rgba(34, 197, 94, 0.1);
-    text-color: rgba(34, 197, 94, 1.0);
+    background-color:            @primary;
+    text-color:                  @on-surface;
 }
-
 element selected.normal {
-    background-color: @bg-selected;
-    text-color: @text-selected;
-    border-radius: 12px;
-    border: 1px solid;
-    border-color: @accent-pink;
+    background-color:            @primary;
+    text-color:                  @on-secondary;
 }
-
 element selected.urgent {
-    background-color: rgba(239, 68, 68, 0.8);
-    text-color: @text-selected;
+    background-color:            @error;
+    text-color:                  @on-secondary;
 }
-
 element selected.active {
-    background-color: rgba(34, 197, 94, 0.8);
-    text-color: @text-selected;
+    background-color:            @error;
+    text-color:                  @on-secondary;
 }
-
-element alternate.normal {
-    background-color: transparent;
-    text-color: @text-primary;
-}
-
-element alternate.urgent {
-    background-color: rgba(239, 68, 68, 0.05);
-    text-color: rgba(239, 68, 68, 1.0);
-}
-
-element alternate.active {
-    background-color: rgba(34, 197, 94, 0.05);
-    text-color: rgba(34, 197, 94, 1.0);
-}
-
 element-icon {
-    background-color: transparent;
-    text-color: inherit;
-    size: 28px;
-    cursor: inherit;
-    border-radius: 8px;
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        32px;
+    cursor:                      inherit;
 }
-
 element-text {
-    background-color: transparent;
-    text-color: inherit;
-    highlight: inherit;
-    cursor: inherit;
-    vertical-align: 0.5;
-    horizontal-align: 0.0;
-    font: "SF Pro Display 13";
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
 }
 
-mode-switcher {
-    enabled: true;
-    spacing: 15px;
-    margin: 20px 0px 0px 0px;
-    padding: 0px;
-    border: 0px solid;
-    border-radius: 0px;
-    border-color: transparent;
-    background-color: transparent;
-    text-color: @text-primary;
+message {
+    background-color:            transparent;
 }
-
-button {
-    padding: 12px 20px;
-    border: 0px solid;
-    border-radius: 10px;
-    border-color: @border-color;
-    background-color: @bg-secondary;
-    text-color: @text-secondary;
-    cursor: pointer;
-    font: "SF Pro Display Medium 12";
+textbox {
+    padding:                     15px;
+    border-radius:               10px;
+    background-color:            @on-primary;
+    text-color:                  @on-surface;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
 }
-
-button selected {
-    background-color: @bg-selected;
-    text-color: @text-selected;
+error-message {
+    padding:                     15px;
+    border-radius:               20px;
+    background-color:            @on-primary;
+    text-color:                  @on-surface;
 }
-
-case-indicator {
-    enabled: true;
-    background-color: transparent;
-    text-color: @text-secondary;
-}
-
-/* Hover effects are handled by rofi internally */
