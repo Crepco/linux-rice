@@ -3,50 +3,67 @@
     "logo": {
         "source": "~/.config/fastfetch/arch.txt",
         "padding": {
-	        "top": 1
-	    }
+            "top": 1
+        },
+        "color": {
+            "1": "#FF6B9D",
+            "2": "#4ECDC4",
+            "3": "#E91E63",
+            "4": "#2196F3",
+            "5": "#FF6B9D"
+        }
     },
     "display": {
-        "separator": "  "
-    },    
+        "separator": "  ",
+        "color": {
+            "keys": "#FF6B9D",
+            "title": "#4ECDC4"
+        }
+    },
     "modules": [
-	"break",
-    "break",
-	"title",
+        "break",
+        "break",
+        {
+            "type": "title",
+            "color": {
+                "user": "#FF6B9D",
+                "at": "#FF6B9D",
+                "host": "#4ECDC4"
+            }
+        },
         {
             "type": "os",
             "key": "os    ",
-            "keyColor": "33",
+            "keyColor": "#FF6B9D"
         },
         {
             "type": "kernel",
             "key": "kernel",
-            "keyColor": "33",
+            "keyColor": "#2196F3"
         },
         {
             "type": "host",
             "format": "{5} {1}",
             "key": "host  ",
-            "keyColor": "33",
+            "keyColor": "#E91E63"
         },
         {
             "type": "packages",
             "format": "{} (pacman)",
             "key": "pkgs  ",
-            "keyColor": "33",  
+            "keyColor": "#4ECDC4"
         },
         {
             "type": "cpu",
             "format": "   {2}",
             "key": "cpu",
-            "keyColor": "33",
+            "keyColor": "#FF6B9D"
         },
         {
             "type": "memory",
             "key": "memory",
-            "keyColor": "33",
+            "keyColor": "#FF6B9D"
         },
-        "break",
-        "break",
+        "break"
     ]
 }

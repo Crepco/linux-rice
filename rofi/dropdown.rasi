@@ -1,0 +1,81 @@
+@theme "/dev/null"
+@import "colors.rasi"
+
+configuration {
+    font:        "Hack Nerd Font 12";
+    show-icons:  false;
+    hover-select: true;
+    me-select-entry: "";
+    me-accept-entry: ["MousePrimary"];
+}
+
+window {
+    transparency:     "real";
+    location:         northeast;
+    anchor:           northeast;
+    x-offset:         -10px;
+    y-offset:         50px;
+    width:            260px;
+    border:           1px;
+    border-color:     rgba(255, 64, 129, 0.5);
+    border-radius:    12px;
+    background-color: rgba(13, 13, 21, 0.97);
+    padding:          6px;
+}
+
+mainbox {
+    background-color: transparent;
+    spacing:          0;
+    children:         ["message", "listview"];
+}
+
+/* Status header */
+message {
+    background-color: rgba(255, 64, 129, 0.08);
+    border:           0px;
+    border-radius:    8px;
+    padding:          10px 14px;
+    margin:           0 0 6px 0;
+}
+
+textbox {
+    background-color: transparent;
+    text-color:       #ff4081;
+    font:             "Hack Nerd Font Bold 12";
+    horizontal-align: 0.5;
+}
+
+listview {
+    background-color: transparent;
+    spacing:          3px;
+    lines:            10;
+    scrollbar:        false;
+    cycle:            false;
+}
+
+element {
+    border-radius:    8px;
+    padding:          10px 14px;
+    background-color: transparent;
+    color:            rgba(255, 255, 255, 0.75);
+    cursor:           pointer;
+}
+
+element normal.normal {
+    background-color: transparent;
+    color:            rgba(255, 255, 255, 0.75);
+}
+
+element selected.normal {
+    background-color: rgba(255, 64, 129, 0.15);
+    color:            #ff4081;
+    border:           1px;
+    border-color:     rgba(255, 64, 129, 0.35);
+    border-radius:    8px;
+}
+
+element-text {
+    background-color: transparent;
+    color:            inherit;
+    vertical-align:   0.5;
+}

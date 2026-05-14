@@ -7,7 +7,7 @@ configuration {
 	display-window: "Windows";
 	display-run: "Run";
 	drun-display-format: "{icon} {name}";
-	font: "JetBrainsMono Nerd Font 10";
+	font: "Hack Nerd Font 10";
 	show-icons: true;
 	icon-theme: "Colloid";
 }
@@ -42,7 +42,7 @@ mainbox {
 imagebox {
     padding:                     20px;
     background-color:            transparent;
-    background-image:            url("/home/crepco/Downloads/wallpaper2.png", height);
+    background-image:            url("/home/crepco/Pictures/wallpapers/wallpaper.png", height);
     orientation:                 vertical;
     children:                    [ "inputbar", "dummy", "mode-switcher" ];
 }

@@ -1,0 +1,45 @@
+/* Cyberpunk/Synthwave Color Scheme
+ * Inspired by neon-lit cityscapes with pink, cyan, and dark backgrounds
+ */
+
+* {
+    /* Primary Colors - Hot Pink/Magenta */
+    primary:                     #ff4081;
+    primary-fixed:               #ff6b9d;
+    on-primary:                  #1a1625;
+    
+    /* Secondary Colors - Cyan/Blue */
+    secondary:                   #64c8ff;
+    secondary-container:         #4db8ef;
+    on-secondary:                #0d0d15;
+    
+    /* Surface Colors - Dark bases */
+    surface:                     #0d0d15;
+    on-surface:                  #e8e6f0;
+    surface-variant:             #1a1625;
+    on-surface-variant:          #c5c3d0;
+    
+    /* Container Colors */
+    on-primary-fixed:            #16141f;
+    surface-container:           #1e1b2e;
+    
+    /* Accent Colors */
+    tertiary:                    #b967ff;
+    on-tertiary:                 #0d0d15;
+    
+    /* State Colors */
+    error:                       #ff2e63;
+    on-error:                    #0d0d15;
+    
+    /* Border and outline */
+    outline:                     #ff4081;
+    outline-variant:             #333348;
+    
+    /* Background variations */
+    background:                  #0d0d15;
+    on-background:               #e8e6f0;
+    
+    /* Shadow */
+    shadow:                      #000000;
+    scrim:                       #000000;
+}

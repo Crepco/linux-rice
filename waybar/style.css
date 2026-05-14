@@ -1,0 +1,167 @@
+/* === CYBERPUNK WAYBAR === */
+/* bg:#16162a  pink:#ff4081  cyan:#64c8ff  purple:#c896ff */
+
+* {
+  font-family: 'Symbols Nerd Font', 'Hack Nerd Font', 'Inter', sans-serif;
+  font-size: 13px;
+  min-height: 0;
+  padding: 0;
+}
+
+#waybar {
+  background: transparent;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 500;
+
+}
+
+
+/* ── LEFT: individual pills ── */
+#workspaces,
+#custom-uptime,
+#cpu {
+  background-color: #16162a;
+  padding: 0.3rem 0.7rem;
+  margin: 5px 0;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 64, 129, 0.15);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+#workspaces {
+  padding: 2px;
+  margin-left: 7px;
+  margin-right: 5px;
+}
+
+#custom-uptime {
+  margin-right: 5px;
+  color: #c896ff;
+}
+
+#cpu {
+  color: #ffffff;
+  margin-right: 0;
+}
+
+#custom-uptime:hover,
+#cpu:hover {
+  background-color: #1c1c32;
+  border-color: rgba(255, 64, 129, 0.4);
+}
+
+/* Workspace buttons */
+#workspaces button {
+  color: rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  padding: 0.3rem 0.6rem;
+  background: transparent;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  outline: none;
+}
+
+#workspaces button.active {
+  color: #ff4081;
+  background-color: rgba(255, 64, 129, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(255, 64, 129, 0.35);
+}
+
+#workspaces button:hover {
+  background: #1c1c32;
+  color: #64c8ff;
+}
+
+
+/* ── CENTER: clock ── */
+#clock {
+  background-color: #16162a;
+  color: #64c8ff;
+  font-weight: 600;
+  padding: 0.3rem 0.9rem;
+  margin: 5px 0;
+  border-radius: 6px;
+  border: 1px solid rgba(100, 200, 255, 0.25);
+  box-shadow: 0 0 8px rgba(100, 200, 255, 0.1);
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+#clock:hover {
+  background-color: #1c1c32;
+  box-shadow: 0 0 14px rgba(100, 200, 255, 0.25);
+}
+
+
+/* ── RIGHT: seamless pill ── */
+#bluetooth,
+#network,
+#pulseaudio,
+#backlight,
+#battery {
+  background-color: #16162a;
+  color: #64c8ff;
+  padding: 0.3rem 0.7rem;
+  margin: 5px 0;
+  border-radius: 0;
+  border-top: 1px solid rgba(100, 200, 255, 0.12);
+  border-bottom: 1px solid rgba(100, 200, 255, 0.12);
+  transition: background-color 0.2s;
+}
+
+#bluetooth:hover,
+#network:hover,
+#pulseaudio:hover,
+#backlight:hover,
+#battery:hover {
+  background-color: #1c1c32;
+}
+
+/* round left cap */
+#bluetooth {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-left: 1px solid rgba(100, 200, 255, 0.12);
+  margin-left: 5px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* round right cap */
+#battery {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-right: 1px solid rgba(100, 200, 255, 0.12);
+  margin-right: 7px;
+}
+
+
+/* ── Per-module colors ── */
+#bluetooth.on       { color: #64c8ff; }
+#bluetooth.connected { color: #ff4081; }
+
+#network            { color: #64c8ff; }
+#network.disconnected { color: #ff2e63; }
+
+#pulseaudio         { color: #64c8ff; }
+#pulseaudio.muted   { color: rgba(255, 255, 255, 0.3); }
+
+#backlight          { color: #c896ff; }
+
+#battery            { color: #64c8ff; }
+#battery.charging   { color: #64ffda; }
+#battery.plugged    { color: #64ffda; }
+#battery.warning:not(.charging)  { color: #ff4081; }
+#battery.critical:not(.charging) { color: #ff2e63; }
+
+
+/* ── Tooltip ── */
+tooltip {
+  background-color: #16162a;
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 64, 129, 0.3);
+  box-shadow: 0 4px 16px rgba(255, 64, 129, 0.15);
+  font-size: 12px;
+}
