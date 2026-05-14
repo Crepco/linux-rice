@@ -23,10 +23,17 @@ root.geometry("360x80")
 def close(e=None):
     root.destroy()
 
-# Value label
-val_label = tk.Label(root, text=f"{val}%", bg=BG, fg=CYAN,
-                     font=("Hack Nerd Font", 10))
-val_label.pack(anchor="e", padx=16, pady=(8, 0))
+# Header row: icon + title on the left, value on the right
+header = tk.Frame(root, bg=BG)
+header.pack(fill="x", padx=16, pady=(8, 0))
+
+title_label = tk.Label(header, text=title, bg=BG, fg=PINK,
+                       font=("Hack Nerd Font", 11, "bold"))
+title_label.pack(side="left")
+
+val_label = tk.Label(header, text=f"{val}%", bg=BG, fg=CYAN,
+                     font=("Hack Nerd Font", 11))
+val_label.pack(side="right")
 
 def on_change(v):
     pct = int(float(v))
