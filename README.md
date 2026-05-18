@@ -13,7 +13,7 @@ Palette: hot pink `#ff4081`, electric cyan `#64c8ff`, purple `#c896ff` on a dark
 | [rofi/](rofi/) | [Rofi](https://github.com/davatorium/rofi) | App launcher and dropdown menus |
 | [dunst/](dunst/) | [dunst](https://dunst-project.org/) | Notification daemon |
 | [kitty/](kitty/) | [kitty](https://sw.kovidgoyal.net/kitty/) | GPU-accelerated terminal |
-| [fastfetch/](fastfetch/) | [fastfetch](https://github.com/fastfetch-cli/fastfetch) | Terminal system info |
+| [neofetch/](neofetch/) | [neofetch](https://github.com/dylanaraps/neofetch) (AUR) | Terminal system info |
 
 ## Stack
 
@@ -24,7 +24,7 @@ Palette: hot pink `#ff4081`, electric cyan `#64c8ff`, purple `#c896ff` on a dark
 - **Lockscreen:** hyprlock
 - **Wallpaper:** hyprpaper / swww
 - **Terminal:** kitty
-- **Shell prompt fetch:** fastfetch
+- **Shell prompt fetch:** neofetch
 - **File manager:** dolphin
 - **Browser:** brave
 - **Font:** Hack Nerd Font / GohuFont 11 Nerd Font / Symbols Nerd Font
@@ -32,12 +32,12 @@ Palette: hot pink `#ff4081`, electric cyan `#64c8ff`, purple `#c896ff` on a dark
 ## Required packages (Arch)
 
 ```bash
-sudo pacman -S hyprland hyprlock hyprpaper waybar rofi dunst kitty fastfetch \
+sudo pacman -S hyprland hyprlock hyprpaper waybar rofi dunst kitty \
                brightnessctl wireplumber playerctl networkmanager bluez bluez-utils \
                blueman grim slurp wl-clipboard ttf-hack-nerd dolphin
 
 # AUR (via yay/paru)
-yay -S swww nm-connection-editor
+yay -S neofetch swww nm-connection-editor
 ```
 
 ## Install
@@ -53,7 +53,7 @@ ln -s "$PWD/waybar"    ~/.config/waybar
 ln -s "$PWD/rofi"      ~/.config/rofi
 ln -s "$PWD/dunst"     ~/.config/dunst
 ln -s "$PWD/kitty"     ~/.config/kitty
-ln -s "$PWD/fastfetch" ~/.config/fastfetch
+ln -s "$PWD/neofetch"  ~/.config/neofetch
 ```
 
 > The repo folder is named `hyprland/` for clarity, but Hyprland reads from `~/.config/hypr/`.
