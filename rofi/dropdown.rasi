@@ -17,9 +17,9 @@ window {
     y-offset:         50px;
     width:            260px;
     border:           1px;
-    border-color:     rgba(255, 64, 129, 0.5);
+    border-color:     rgba(204, 101, 111, 0.55);
     border-radius:    12px;
-    background-color: rgba(13, 13, 21, 0.97);
+    background-color: rgba(47, 51, 63, 0.97);
     padding:          6px;
 }
 
@@ -31,7 +31,7 @@ mainbox {
 
 /* Status header */
 message {
-    background-color: rgba(255, 64, 129, 0.08);
+    background-color: rgba(204, 101, 111, 0.10);
     border:           0px;
     border-radius:    8px;
     padding:          10px 14px;
@@ -40,7 +40,7 @@ message {
 
 textbox {
     background-color: transparent;
-    text-color:       #ff4081;
+    text-color:       #cc656f;
     font:             "Hack Nerd Font Bold 12";
     horizontal-align: 0.5;
 }
@@ -57,20 +57,20 @@ element {
     border-radius:    8px;
     padding:          10px 14px;
     background-color: transparent;
-    color:            rgba(255, 255, 255, 0.75);
+    color:            rgba(232, 221, 216, 0.78);
     cursor:           pointer;
 }
 
 element normal.normal {
     background-color: transparent;
-    color:            rgba(255, 255, 255, 0.75);
+    color:            rgba(232, 221, 216, 0.78);
 }
 
 element selected.normal {
-    background-color: rgba(255, 64, 129, 0.15);
-    color:            #ff4081;
+    background-color: rgba(204, 101, 111, 0.18);
+    color:            #d4a574;
     border:           1px;
-    border-color:     rgba(255, 64, 129, 0.35);
+    border-color:     rgba(204, 101, 111, 0.42);
     border-radius:    8px;
 }
 

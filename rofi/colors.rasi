@@ -1,44 +1,44 @@
-/* Cyberpunk/Synthwave Color Scheme
- * Inspired by neon-lit cityscapes with pink, cyan, and dark backgrounds
+/* Ink Rhyme Color Scheme
+ * Inspired by sumi-e calligraphy — muted rose on dark navy slate
  */
 
 * {
-    /* Primary Colors - Hot Pink/Magenta */
-    primary:                     #ff4081;
-    primary-fixed:               #ff6b9d;
-    on-primary:                  #1a1625;
-    
-    /* Secondary Colors - Cyan/Blue */
-    secondary:                   #64c8ff;
-    secondary-container:         #4db8ef;
-    on-secondary:                #0d0d15;
-    
-    /* Surface Colors - Dark bases */
-    surface:                     #0d0d15;
-    on-surface:                  #e8e6f0;
-    surface-variant:             #1a1625;
-    on-surface-variant:          #c5c3d0;
-    
+    /* Primary Colors - Dusty Rose (calligraphy) */
+    primary:                     #cc656f;
+    primary-fixed:               #d67a85;
+    on-primary:                  #2f333f;
+
+    /* Secondary Colors - Warm Gold */
+    secondary:                   #d4a574;
+    secondary-container:         #c29464;
+    on-secondary:                #2f333f;
+
+    /* Surface Colors - Dark Navy Slate bases */
+    surface:                     #2f333f;
+    on-surface:                  #e8ddd8;
+    surface-variant:             #383c4a;
+    on-surface-variant:          #c5beb8;
+
     /* Container Colors */
-    on-primary-fixed:            #16141f;
-    surface-container:           #1e1b2e;
-    
-    /* Accent Colors */
-    tertiary:                    #b967ff;
-    on-tertiary:                 #0d0d15;
-    
+    on-primary-fixed:            #2f333f;
+    surface-container:           #42394c;
+
+    /* Accent Colors - Muted Sage */
+    tertiary:                    #7a9e84;
+    on-tertiary:                 #2f333f;
+
     /* State Colors */
-    error:                       #ff2e63;
-    on-error:                    #0d0d15;
-    
+    error:                       #e5707e;
+    on-error:                    #2f333f;
+
     /* Border and outline */
-    outline:                     #ff4081;
-    outline-variant:             #333348;
-    
+    outline:                     #cc656f;
+    outline-variant:             #4a4555;
+
     /* Background variations */
-    background:                  #0d0d15;
-    on-background:               #e8e6f0;
-    
+    background:                  #2f333f;
+    on-background:               #e8ddd8;
+
     /* Shadow */
     shadow:                      #000000;
     scrim:                       #000000;
