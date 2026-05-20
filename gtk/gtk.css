@@ -1,0 +1,155 @@
+/* === Yoake (夜明け) GTK overrides ===
+ * Applied to Adwaita-dark base.
+ * peach #e2aaa1  ·  cream #e9cdb0  ·  mauve #9e8c9c
+ * bg #20202f  ·  surface #363849  ·  fg #e9cdb0
+ */
+
+@define-color accent_bg_color        #e2aaa1;
+@define-color accent_fg_color        #20202f;
+@define-color accent_color           #e2aaa1;
+
+@define-color destructive_bg_color   #c08080;
+@define-color destructive_fg_color   #20202f;
+@define-color destructive_color      #c08080;
+
+@define-color success_bg_color       #90a89c;
+@define-color success_fg_color       #20202f;
+@define-color success_color          #90a89c;
+
+@define-color warning_bg_color       #e9cdb0;
+@define-color warning_fg_color       #20202f;
+@define-color warning_color          #e9cdb0;
+
+@define-color error_bg_color         #c08080;
+@define-color error_fg_color         #20202f;
+@define-color error_color            #c08080;
+
+@define-color window_bg_color        #20202f;
+@define-color window_fg_color        #e9cdb0;
+@define-color view_bg_color          #20202f;
+@define-color view_fg_color          #e9cdb0;
+@define-color headerbar_bg_color     #2a2a3c;
+@define-color headerbar_fg_color     #e9cdb0;
+@define-color headerbar_border_color #4d4f63;
+@define-color headerbar_backdrop_color #20202f;
+@define-color sidebar_bg_color       #2a2a3c;
+@define-color sidebar_fg_color       #e9cdb0;
+@define-color sidebar_backdrop_color #20202f;
+@define-color sidebar_border_color   #4d4f63;
+@define-color card_bg_color          #363849;
+@define-color card_fg_color          #e9cdb0;
+@define-color popover_bg_color       #363849;
+@define-color popover_fg_color       #e9cdb0;
+@define-color dialog_bg_color        #20202f;
+@define-color dialog_fg_color        #e9cdb0;
+@define-color thumbnail_bg_color     #363849;
+@define-color thumbnail_fg_color     #e9cdb0;
+@define-color shade_color            alpha(black, 0.36);
+@define-color scrollbar_outline_color #4d4f63;
+
+/* Selection */
+selection {
+    background-color: alpha(#e2aaa1, 0.30);
+    color: #e9cdb0;
+}
+
+/* === Nautilus / file-list polish === */
+.view:selected,
+treeview.view:selected,
+treeview.view:selected:focus,
+gridview > child:selected,
+gridview > child:selected:focus {
+    background-color: alpha(#e2aaa1, 0.22);
+    color: #e9cdb0;
+}
+
+.view:selected:hover {
+    background-color: alpha(#e2aaa1, 0.32);
+}
+
+/* Sidebar (Places) */
+.sidebar,
+.navigation-sidebar {
+    background-color: #2a2a3c;
+    color: #e9cdb0;
+}
+
+.navigation-sidebar row:selected {
+    background-color: alpha(#e2aaa1, 0.20);
+    color: #e9cdb0;
+}
+
+.navigation-sidebar row:hover {
+    background-color: alpha(#e9cdb0, 0.08);
+}
+
+/* Headerbar / titlebar */
+headerbar,
+.titlebar {
+    background-color: #2a2a3c;
+    color: #e9cdb0;
+    border-bottom: 1px solid #4d4f63;
+}
+
+headerbar entry,
+headerbar searchentry {
+    background-color: #20202f;
+    color: #e9cdb0;
+    border: 1px solid #4d4f63;
+}
+
+headerbar entry:focus-within,
+headerbar searchentry:focus-within {
+    border-color: #e2aaa1;
+}
+
+/* Suggested action buttons (e.g. "Open") */
+button.suggested-action,
+button.suggested-action:hover {
+    background-color: #e2aaa1;
+    color: #20202f;
+}
+
+button.suggested-action:hover {
+    background-color: #ebbda5;
+}
+
+/* Destructive buttons (e.g. "Delete") */
+button.destructive-action {
+    background-color: #c08080;
+    color: #20202f;
+}
+
+/* Scrollbars */
+scrollbar slider {
+    background-color: alpha(#9e8c9c, 0.45);
+    min-width: 8px;
+    min-height: 8px;
+}
+
+scrollbar slider:hover {
+    background-color: alpha(#e2aaa1, 0.70);
+}
+
+/* Pathbar buttons */
+.path-bar button,
+pathbar button {
+    color: #e9cdb0;
+}
+
+.path-bar button:hover,
+pathbar button:hover {
+    background-color: alpha(#e9cdb0, 0.10);
+}
+
+.path-bar button.current-dir,
+pathbar button.current-dir {
+    color: #e2aaa1;
+    font-weight: bold;
+}
+
+/* Window border radius (modern look) */
+window,
+.background {
+    border-radius: 10px;
+}

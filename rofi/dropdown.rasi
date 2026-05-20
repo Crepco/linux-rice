@@ -2,7 +2,7 @@
 @import "colors.rasi"
 
 configuration {
-    font:        "Hack Nerd Font 12";
+    font:        "JetBrainsMono Nerd Font 12";
     show-icons:  false;
     hover-select: true;
     me-select-entry: "";
@@ -17,9 +17,9 @@ window {
     y-offset:         50px;
     width:            260px;
     border:           1px;
-    border-color:     rgba(204, 101, 111, 0.55);
+    border-color:     rgba(226, 170, 161, 0.55);
     border-radius:    12px;
-    background-color: rgba(47, 51, 63, 0.97);
+    background-color: rgba(32, 32, 47, 0.97);
     padding:          6px;
 }
 
@@ -31,7 +31,7 @@ mainbox {
 
 /* Status header */
 message {
-    background-color: rgba(204, 101, 111, 0.10);
+    background-color: rgba(226, 170, 161, 0.10);
     border:           0px;
     border-radius:    8px;
     padding:          10px 14px;
@@ -40,8 +40,8 @@ message {
 
 textbox {
     background-color: transparent;
-    text-color:       #cc656f;
-    font:             "Hack Nerd Font Bold 12";
+    text-color:       #e2aaa1;
+    font:             "JetBrainsMono Nerd Font Bold 12";
     horizontal-align: 0.5;
 }
 
@@ -57,20 +57,20 @@ element {
     border-radius:    8px;
     padding:          10px 14px;
     background-color: transparent;
-    color:            rgba(232, 221, 216, 0.78);
+    color:            rgba(233, 205, 176, 0.78);
     cursor:           pointer;
 }
 
 element normal.normal {
     background-color: transparent;
-    color:            rgba(232, 221, 216, 0.78);
+    color:            rgba(233, 205, 176, 0.78);
 }
 
 element selected.normal {
-    background-color: rgba(204, 101, 111, 0.18);
-    color:            #d4a574;
+    background-color: rgba(226, 170, 161, 0.18);
+    color:            #e9cdb0;
     border:           1px;
-    border-color:     rgba(204, 101, 111, 0.42);
+    border-color:     rgba(226, 170, 161, 0.42);
     border-radius:    8px;
 }
 

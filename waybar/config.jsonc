@@ -3,7 +3,7 @@
   "position": "top",
   "margin-bottom": -7,
   "spacing" : 0,
-  "font-family": "Symbols Nerd Font, Hack Nerd Font, Inter",
+  "font-family": "JetBrainsMono Nerd Font, Symbols Nerd Font",
   "font-size": 13,
   "modules-left": [
   "hyprland/workspaces",

@@ -1,0 +1,139 @@
+# Yazi theme — Yoake (夜明け)
+# peach #e2aaa1  ·  cream #e9cdb0  ·  mauve #9e8c9c  ·  slate #6f7288
+# bg #20202f  ·  surface #363849  ·  border #4d4f63  ·  fg #e9cdb0
+
+[manager]
+cwd = { fg = "#e2aaa1" }
+
+# Hovered
+hovered         = { fg = "#20202f", bg = "#e2aaa1" }
+preview_hovered = { underline = true }
+
+# Find
+find_keyword  = { fg = "#e9cdb0", italic = true }
+find_position = { fg = "#9e8c9c", bg = "reset", italic = true }
+
+# Marker
+marker_copied   = { fg = "#90a89c", bg = "#90a89c" }
+marker_cut      = { fg = "#c08080", bg = "#c08080" }
+marker_marked   = { fg = "#7a8ca8", bg = "#7a8ca8" }
+marker_selected = { fg = "#e9cdb0", bg = "#e9cdb0" }
+
+# Tab
+tab_active   = { fg = "#20202f", bg = "#e2aaa1" }
+tab_inactive = { fg = "#e9cdb0", bg = "#363849" }
+
+# Count
+count_copied   = { fg = "#20202f", bg = "#90a89c" }
+count_cut      = { fg = "#20202f", bg = "#c08080" }
+count_selected = { fg = "#20202f", bg = "#e9cdb0" }
+
+# Border
+border_symbol = "│"
+border_style  = { fg = "#4d4f63" }
+
+# Highlighting
+syntect_theme = ""
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "#363849", bg = "#363849" }
+
+# Mode
+mode_normal = { fg = "#20202f", bg = "#e2aaa1", bold = true }
+mode_select = { fg = "#20202f", bg = "#e9cdb0", bold = true }
+mode_unset  = { fg = "#20202f", bg = "#9e8c9c", bold = true }
+
+# Progress
+progress_label  = { fg = "#e9cdb0", bold = true }
+progress_normal = { fg = "#e2aaa1", bg = "#363849" }
+progress_error  = { fg = "#c08080", bg = "#363849" }
+
+# Permissions
+permissions_t = { fg = "#7a8ca8" }
+permissions_r = { fg = "#e9cdb0" }
+permissions_w = { fg = "#c08080" }
+permissions_x = { fg = "#90a89c" }
+permissions_s = { fg = "#9e8c9c" }
+
+[select]
+border   = { fg = "#e2aaa1" }
+active   = { fg = "#e2aaa1" }
+inactive = {}
+
+[input]
+border   = { fg = "#e2aaa1" }
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+[completion]
+border   = { fg = "#e2aaa1" }
+active   = { bg = "#363849" }
+inactive = {}
+
+[tasks]
+border  = { fg = "#e2aaa1" }
+title   = {}
+hovered = { underline = true }
+
+[which]
+mask            = { bg = "#20202f" }
+cand            = { fg = "#e2aaa1" }
+rest            = { fg = "#9e8c9c" }
+desc            = { fg = "#e9cdb0" }
+separator       = "  "
+separator_style = { fg = "#4d4f63" }
+
+[help]
+on      = { fg = "#e2aaa1" }
+exec    = { fg = "#e9cdb0" }
+desc    = { fg = "#9e8c9c" }
+hovered = { bg = "#363849", bold = true }
+footer  = { fg = "#20202f", bg = "#e9cdb0" }
+
+[notify]
+title_info = { fg = "#90a89c" }
+title_warn = { fg = "#e9cdb0" }
+title_error = { fg = "#c08080" }
+icon_info   = ""
+icon_warn   = ""
+icon_error  = ""
+
+[filetype]
+rules = [
+    # Images
+    { mime = "image/*", fg = "#e2aaa1" },
+    # Media
+    { mime = "video/*", fg = "#e9cdb0" },
+    { mime = "audio/*", fg = "#e9cdb0" },
+    # Archives
+    { mime = "application/zip",             fg = "#9e8c9c" },
+    { mime = "application/gzip",            fg = "#9e8c9c" },
+    { mime = "application/x-tar",           fg = "#9e8c9c" },
+    { mime = "application/x-bzip",          fg = "#9e8c9c" },
+    { mime = "application/x-bzip2",         fg = "#9e8c9c" },
+    { mime = "application/x-7z-compressed", fg = "#9e8c9c" },
+    { mime = "application/x-rar",           fg = "#9e8c9c" },
+    # Documents
+    { mime = "application/pdf", fg = "#c08080" },
+    # Empty / fallback
+    { mime = "inode/x-empty", fg = "#6f7288", italic = true },
+    { url = "*",  fg = "#e9cdb0" },
+    { url = "*/", fg = "#e2aaa1", bold = true },
+]
+
+[icon]
+prepend_rules = [
+    { url = ".git",          text = "" },
+    { url = "Downloads/",    text = "" },
+    { url = "Documents/",    text = "" },
+    { url = "Pictures/",     text = "" },
+    { url = "Music/",        text = "" },
+    { url = "Videos/",       text = "" },
+    { url = "Desktop/",      text = "" },
+    { url = ".config/",      text = "" },
+    { url = ".cache/",       text = "" },
+    { url = ".local/",       text = "" },
+]

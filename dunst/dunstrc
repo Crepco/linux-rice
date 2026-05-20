@@ -24,13 +24,13 @@
     horizontal_padding = 14
     text_icon_padding = 10
     frame_width = 2
-    frame_color = "#cc656f"
+    frame_color = "#e2aaa1"
     gap_size = 6
     separator_color = frame
     sort = yes
     idle_threshold = 120
 
-    font = Hack Nerd Font 10
+    font = JetBrainsMono Nerd Font 10
     line_height = 2
     markup = full
     format = "<b>%s</b>\n%b"
@@ -69,19 +69,19 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "#2f333f"
-    foreground = "#c5beb8"
-    frame_color = "#4a4555"
+    background = "#20202f"
+    foreground = "#c5b8ab"
+    frame_color = "#4d4f63"
     timeout = 4
 
 [urgency_normal]
-    background = "#2f333f"
-    foreground = "#e8ddd8"
-    frame_color = "#cc656f"
+    background = "#20202f"
+    foreground = "#e9cdb0"
+    frame_color = "#e2aaa1"
     timeout = 6
 
 [urgency_critical]
-    background = "#2f333f"
-    foreground = "#e5707e"
-    frame_color = "#d4a574"
+    background = "#20202f"
+    foreground = "#ebbda5"
+    frame_color = "#e9cdb0"
     timeout = 0

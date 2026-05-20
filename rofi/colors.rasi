@@ -1,43 +1,43 @@
-/* Ink Rhyme Color Scheme
- * Inspired by sumi-e calligraphy — muted rose on dark navy slate
+/* Yoake (夜明け) Color Scheme
+ * Inspired by twilight train at the coast — warm peach cloud on cool slate
  */
 
 * {
-    /* Primary Colors - Dusty Rose (calligraphy) */
-    primary:                     #cc656f;
-    primary-fixed:               #d67a85;
-    on-primary:                  #2f333f;
+    /* Primary Colors - Warm Peach (cloud) */
+    primary:                     #e2aaa1;
+    primary-fixed:               #ebbda5;
+    on-primary:                  #20202f;
 
-    /* Secondary Colors - Warm Gold */
-    secondary:                   #d4a574;
-    secondary-container:         #c29464;
-    on-secondary:                #2f333f;
+    /* Secondary Colors - Cream Gold (cloud highlight) */
+    secondary:                   #e9cdb0;
+    secondary-container:         #d8b89e;
+    on-secondary:                #20202f;
 
-    /* Surface Colors - Dark Navy Slate bases */
-    surface:                     #2f333f;
-    on-surface:                  #e8ddd8;
-    surface-variant:             #383c4a;
-    on-surface-variant:          #c5beb8;
+    /* Surface Colors - Deep Night Slate bases */
+    surface:                     #20202f;
+    on-surface:                  #e9cdb0;
+    surface-variant:             #363849;
+    on-surface-variant:          #c5b8ab;
 
     /* Container Colors */
-    on-primary-fixed:            #2f333f;
-    surface-container:           #42394c;
+    on-primary-fixed:            #20202f;
+    surface-container:           #2a2a3c;
 
-    /* Accent Colors - Muted Sage */
-    tertiary:                    #7a9e84;
-    on-tertiary:                 #2f333f;
+    /* Accent Colors - Lavender Mauve */
+    tertiary:                    #9e8c9c;
+    on-tertiary:                 #20202f;
 
     /* State Colors */
-    error:                       #e5707e;
-    on-error:                    #2f333f;
+    error:                       #c08080;
+    on-error:                    #20202f;
 
     /* Border and outline */
-    outline:                     #cc656f;
-    outline-variant:             #4a4555;
+    outline:                     #e2aaa1;
+    outline-variant:             #4d4f63;
 
     /* Background variations */
-    background:                  #2f333f;
-    on-background:               #e8ddd8;
+    background:                  #20202f;
+    on-background:               #e9cdb0;
 
     /* Shadow */
     shadow:                      #000000;
