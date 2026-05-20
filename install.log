@@ -1,0 +1,10 @@
+[21:02:44 2026-05-20] FETCHING Version 2.43.2
+[21:02:44 2026-05-20] CREATING /home/crepco/.spicetify
+[21:02:44 2026-05-20] DOWNLOADING https://github.com/spicetify/cli/releases/download/v2.43.2/spicetify-2.43.2-linux-amd64.tar.gz
+[21:02:50 2026-05-20] EXTRACTING /home/crepco/.spicetify/spicetify.tar.gz
+[21:02:50 2026-05-20] SETTING EXECUTABLE PERMISSIONS TO /home/crepco/.spicetify/spicetify
+[21:02:50 2026-05-20] REMOVING /home/crepco/.spicetify/spicetify.tar.gz
+[21:02:50 2026-05-20] APPENDING /home/crepco/.spicetify to PATH in /home/crepco/.bashrc
+[21:02:50 2026-05-20] APPENDING /home/crepco/.spicetify to PATH in /home/crepco/.bash_profile
+[21:02:50 2026-05-20] spicetify v2.43.2 was installed successfully to /home/crepco/.spicetify
+[21:02:50 2026-05-20] Run 'spicetify --help' to get started
