@@ -1,5 +1,5 @@
-// Lockscreen using Wayland session-lock + PAM auth
-// Theme: Yoake — peach hour, cream minute, blurred wallpaper
+// Lockscreen — Wayland session-lock + PAM auth
+// Yoake palette: peach hour, cream minute
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -15,13 +15,71 @@ Scope {
     property string input_: ""
     property string status: ""
     property bool authError: false
+    property bool pamReady: false  // true once PAM has prompted
 
-    function lock()   { locked = true; input_ = ""; status = ""; authError = false }
-    function unlock() { locked = false }
+    function lock() {
+        input_ = ""; status = ""; authError = false; pamReady = false
+        locked = true
+        Qt.callLater(() => pam.active = true)
+    }
+
+    function unlock() {
+        locked = false
+        pam.active = false
+    }
+
+    function submit() {
+        if (!pamReady || input_.length === 0) return
+        status = "checking…"
+        pam.respond(input_)
+        pamReady = false  // wait for next prompt
+    }
 
     IpcHandler {
         target: "lock"
         function activate() { root.lock() }
+    }
+
+    PamContext {
+        id: pam
+        config: "hyprlock"
+        active: false
+
+        onPamMessage: {
+            // PAM asked us something; if it needs a response we're ready to send one
+            if (responseRequired) root.pamReady = true
+        }
+
+        onCompleted: (result) => {
+            if (result === PamResult.Success) {
+                root.status = ""
+                root.input_ = ""
+                root.unlock()
+            } else {
+                root.authError = true
+                root.status = "wrong"
+                root.input_ = ""
+                resetTimer.start()
+            }
+        }
+
+        onError: (err) => {
+            root.authError = true
+            root.status = "auth error"
+            resetTimer.start()
+        }
+    }
+
+    Timer {
+        id: resetTimer
+        interval: 1200
+        onTriggered: {
+            root.status = ""
+            root.authError = false
+            // Restart PAM for another attempt
+            pam.active = false
+            Qt.callLater(() => pam.active = true)
+        }
     }
 
     WlSessionLock {
@@ -31,7 +89,6 @@ Scope {
         WlSessionLockSurface {
             color: "#000000"
 
-            // Blurred wallpaper background
             Image {
                 anchors.fill: parent
                 source: "file:///home/crepco/Pictures/wallpapers/wallpaper.png"
@@ -39,7 +96,6 @@ Scope {
                 opacity: 0.65
             }
 
-            // Dark overlay
             Rectangle {
                 anchors.fill: parent
                 color: Qt.rgba(0.04, 0.04, 0.10, 0.55)
@@ -50,7 +106,6 @@ Scope {
                 spacing: 14
                 width: 380
 
-                // Hour : minute (huge, two colors)
                 RowLayout {
                     Layout.alignment: Qt.AlignHCenter
                     spacing: 8
@@ -78,7 +133,6 @@ Scope {
                     }
                 }
 
-                // Date
                 Text {
                     id: dateText
                     text: ""
@@ -90,16 +144,14 @@ Scope {
 
                 Item { Layout.preferredHeight: 30 }
 
-                // User
                 Text {
-                    text: "⚡ " + (Quickshell.env("USER") || "crepco")
+                    text: "⚡ " + (Quickshell.env("USER") || "user")
                     color: Theme.Yoake.mauve
                     font.family: Theme.Fonts.family
                     font.pixelSize: 22
                     Layout.alignment: Qt.AlignHCenter
                 }
 
-                // Input field
                 Rectangle {
                     Layout.alignment: Qt.AlignHCenter
                     Layout.preferredWidth: 300
@@ -121,7 +173,6 @@ Scope {
                 }
             }
 
-            // Live clock + date
             Timer {
                 interval: 1000; running: true; repeat: true; triggeredOnStart: true
                 onTriggered: {
@@ -134,7 +185,6 @@ Scope {
                 }
             }
 
-            // Hidden text input for capturing password
             TextInput {
                 id: hiddenInput
                 anchors.fill: parent
@@ -143,68 +193,26 @@ Scope {
                 focus: true
                 echoMode: TextInput.Password
 
+                Component.onCompleted: Qt.callLater(forceActiveFocus)
+
                 onTextChanged: root.input_ = text
 
                 Keys.onPressed: (event) => {
                     if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
                         root.submit()
                         event.accepted = true
-                    } else if (event.key === Qt.Key_Escape) {
-                        text = ""
-                        event.accepted = true
+                    } else if (event.key === Qt.Key_Backspace && root.status === "wrong") {
+                        // Clear error state immediately on retype
+                        root.status = ""
+                        root.authError = false
                     }
                 }
 
                 MouseArea {
                     anchors.fill: parent
-                    cursorShape: Qt.IBeamCursor
+                    cursorShape: Qt.ArrowCursor
                     onClicked: hiddenInput.forceActiveFocus()
                 }
-            }
-        }
-    }
-
-    PamContext {
-        id: pam
-        config: "hyprlock"  // reuse hyprlock's PAM config — known to work
-        active: false
-
-        onCompleted: (result) => {
-            if (result === PamResult.Success) {
-                root.status = ""
-                hiddenInput.text = ""
-                root.unlock()
-            } else {
-                root.authError = true
-                root.status = "wrong"
-                resetTimer.start()
-            }
-        }
-    }
-
-    Timer {
-        id: resetTimer
-        interval: 1200
-        onTriggered: {
-            root.status = ""
-            root.authError = false
-            hiddenInput.text = ""
-        }
-    }
-
-    function submit() {
-        if (root.input_.length === 0) return
-        root.status = "checking…"
-        pam.active = false
-        pam.active = true
-        // Send response after pam becomes active (it'll ask for password)
-    }
-
-    Connections {
-        target: pam
-        function onPamMessage() {
-            if (pam.responseRequired) {
-                pam.respond(root.input_)
             }
         }
     }

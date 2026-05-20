@@ -7,7 +7,7 @@ import "../" as Theme
 
 Rectangle {
     id: root
-    required property Notification notif
+    required property var notif
 
     Layout.preferredWidth: 360
     implicitHeight: content.implicitHeight + 24
@@ -18,10 +18,10 @@ Rectangle {
 
     readonly property bool critical: notif?.urgency === NotificationUrgency.Critical
 
-    // Slide-in animation
-    transform: Translate { id: t; x: 380 }
-    Component.onCompleted: slideIn.start()
-    NumberAnimation { id: slideIn; target: t; property: "x"; from: 380; to: 0; duration: 220; easing.type: Easing.OutCubic }
+    // Fade-in animation (simpler than slide, less likely to break)
+    opacity: 0
+    Component.onCompleted: fadeIn.start()
+    NumberAnimation { id: fadeIn; target: root; property: "opacity"; from: 0; to: 1; duration: 180 }
 
     // Auto-dismiss after timeout
     Timer {
