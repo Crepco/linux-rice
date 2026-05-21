@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
+import Quickshell.Hyprland
 import "../" as Theme
 
 Rectangle {
@@ -59,5 +60,11 @@ Rectangle {
             font.family: Theme.Fonts.family
             font.pixelSize: Theme.Fonts.sizeSm
         }
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
+        onClicked: Hyprland.dispatch("exec kitty -e btop")
     }
 }

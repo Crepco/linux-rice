@@ -21,6 +21,8 @@ Rectangle {
 
         Network    {}
         Separator  {}
+        Bluetooth  {}
+        Separator  {}
         Audio      {}
         Separator  {}
         Backlight  {}

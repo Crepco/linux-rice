@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.Pipewire
+import Quickshell.Hyprland
 import "../" as Theme
 
 Item {
@@ -48,6 +49,13 @@ Item {
     MouseArea {
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
-        onClicked: if (root.sink) root.sink.audio.muted = !root.sink.audio.muted
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        onClicked: mouse => {
+            if (mouse.button === Qt.LeftButton) {
+                if (root.sink) root.sink.audio.muted = !root.sink.audio.muted
+            } else {
+                Hyprland.dispatch("exec ~/.config/quickshell/scripts/volume-menu.sh")
+            }
+        }
     }
 }

@@ -1,0 +1,65 @@
+# Yoake (夜明け) — btop theme matching the rice palette
+# Warm peach cloud on deep night slate
+
+# Empty main_bg = transparent (uses kitty's background)
+theme[main_bg]=""
+
+theme[main_fg]="#e9cdb0"
+theme[title]="#e9cdb0"
+theme[hi_fg]="#e2aaa1"
+
+theme[selected_bg]="#e2aaa1"
+theme[selected_fg]="#20202f"
+
+theme[inactive_fg]="#4d4f63"
+theme[graph_text]="#e9cdb0"
+theme[meter_bg]="#363849"
+theme[proc_misc]="#9e8c9c"
+
+# Box outlines
+theme[cpu_box]="#e2aaa1"
+theme[mem_box]="#90a89c"
+theme[net_box]="#7a8ca8"
+theme[proc_box]="#9e8c9c"
+theme[div_line]="#4d4f63"
+
+# Temperature gradient (cool sage → cream → warm peach)
+theme[temp_start]="#90a89c"
+theme[temp_mid]="#e9cdb0"
+theme[temp_end]="#e2aaa1"
+
+# CPU usage gradient
+theme[cpu_start]="#90a89c"
+theme[cpu_mid]="#ebbda5"
+theme[cpu_end]="#e2aaa1"
+
+# Memory: free / cached / available / used
+theme[free_start]="#90a89c"
+theme[free_mid]="#a8bdb0"
+theme[free_end]="#c5b8ab"
+
+theme[cached_start]="#7a8ca8"
+theme[cached_mid]="#8fa1bc"
+theme[cached_end]="#c5b8ab"
+
+theme[available_start]="#c5b8ab"
+theme[available_mid]="#e9cdb0"
+theme[available_end]="#f0dbc2"
+
+theme[used_start]="#e9cdb0"
+theme[used_mid]="#ebbda5"
+theme[used_end]="#e2aaa1"
+
+# Network throughput
+theme[download_start]="#7a8ca8"
+theme[download_mid]="#8fa1bc"
+theme[download_end]="#9e8c9c"
+
+theme[upload_start]="#9e8c9c"
+theme[upload_mid]="#b5a4b0"
+theme[upload_end]="#e2aaa1"
+
+# Process list usage gradient
+theme[process_start]="#e9cdb0"
+theme[process_mid]="#ebbda5"
+theme[process_end]="#e2aaa1"

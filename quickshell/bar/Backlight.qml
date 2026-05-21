@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
+import Quickshell.Hyprland
 import "../" as Theme
 
 Item {
@@ -42,5 +43,11 @@ Item {
             font.family: Theme.Fonts.family
             font.pixelSize: Theme.Fonts.sizeSm
         }
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
+        onClicked: Hyprland.dispatch("exec ~/.config/quickshell/scripts/brightness-menu.sh")
     }
 }
