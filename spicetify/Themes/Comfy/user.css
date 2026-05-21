@@ -1,0 +1,57 @@
+@import url("https://comfy-themes.github.io/Spicetify/Comfy/app.css");
+
+/* Undo Comfy's broken `position: fixed + grid` playback-bar layout.
+ * Forces Spotify's native flex layout so the scrubber + play controls render. */
+.playback-bar {
+  position: static !important;
+  display: flex !important;
+  grid-template-columns: none !important;
+  grid-template-areas: none !important;
+  grid-template-rows: none !important;
+  bottom: auto !important;
+  right: auto !important;
+  left: auto !important;
+  align-items: center !important;
+  width: 100% !important;
+  gap: 8px !important;
+}
+.playback-bar > * {
+  grid-area: auto !important;
+  grid-column: auto !important;
+  grid-row: auto !important;
+  position: static !important;
+}
+.playback-bar .playback-progressbar-container {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  align-items: center !important;
+  min-width: 0 !important;
+}
+.playback-bar .playback-progressbar {
+  flex: 1 1 auto !important;
+  height: 6px !important;
+  width: auto !important;
+}
+.playback-bar .progress-bar {
+  --progress-bar-height: 6px !important;
+  --progress-bar-radius: 3px !important;
+  height: 6px !important;
+  background-color: rgba(var(--spice-rgb-progress-bg), 0.5) !important;
+  border-radius: 3px !important;
+  overflow: hidden !important;
+}
+.playback-bar .progress-bar .x-progressBar-fillColor,
+.playback-bar .progress-bar .progress-bar-color,
+.playback-bar .progress-bar__indicator {
+  background-color: var(--spice-progress-fg) !important;
+  background-image: none !important;
+  height: 100% !important;
+  width: 107% !important;
+}
+.playback-bar .progress-bar__slider {
+  display: block !important;
+  background-color: var(--spice-progress-fg) !important;
+}
+.playback-bar .saber-hilt {
+  height: auto !important;
+}
