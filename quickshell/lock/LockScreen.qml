@@ -42,7 +42,7 @@ Scope {
 
     PamContext {
         id: pam
-        config: "hyprlock"
+        config: "system-auth"
         active: false
 
         onPamMessage: {

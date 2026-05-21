@@ -21,7 +21,7 @@ Palette: hot pink `#ff4081`, electric cyan `#64c8ff`, purple `#c896ff` on a dark
 - **Bar:** Waybar
 - **Launcher:** Rofi
 - **Notifications:** dunst
-- **Lockscreen:** hyprlock
+- **Lockscreen:** quickshell (`qs ipc call lock activate`)
 - **Wallpaper:** hyprpaper / swww
 - **Terminal:** kitty
 - **Shell prompt fetch:** fastfetch
@@ -32,7 +32,7 @@ Palette: hot pink `#ff4081`, electric cyan `#64c8ff`, purple `#c896ff` on a dark
 ## Required packages (Arch)
 
 ```bash
-sudo pacman -S hyprland hyprlock hyprpaper waybar rofi dunst kitty fastfetch \
+sudo pacman -S hyprland hyprpaper quickshell rofi dunst kitty fastfetch \
                brightnessctl wireplumber playerctl networkmanager bluez bluez-utils \
                blueman grim slurp wl-clipboard ttf-hack-nerd dolphin
 
@@ -60,7 +60,7 @@ ln -s "$PWD/fastfetch" ~/.config/fastfetch
 
 ## Notes
 
-- Wallpaper paths in [hyprland/hyprpaper.conf](hyprland/hyprpaper.conf), [hyprland/hyprlock.conf](hyprland/hyprlock.conf), and [rofi/config.rasi](rofi/config.rasi) hard-code `/home/crepco/...` — update them for your user.
+- Wallpaper paths in [hyprland/hyprpaper.conf](hyprland/hyprpaper.conf) and [rofi/config.rasi](rofi/config.rasi) hard-code `/home/crepco/...` — update them for your user.
 - Waybar scripts under [waybar/scripts/](waybar/scripts/) also use absolute `/home/crepco/...` paths.
 - Hyprland's clock module is set to `Asia/Kolkata` in [waybar/config.jsonc](waybar/config.jsonc).
 - See each folder's `README.md` for component-specific details.

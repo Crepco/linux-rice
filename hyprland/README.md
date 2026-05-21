@@ -9,7 +9,7 @@ Place these files in `~/.config/hypr/` (the tool reads from `hypr/`, not `hyprla
 | File | Purpose |
 | --- | --- |
 | [hyprland.conf](hyprland.conf) | Main config — monitors, autostart, look & feel, input, keybinds, window rules |
-| [hyprlock.conf](hyprlock.conf) | Lockscreen layout — clock split into pink hour / cyan minute, date, user, input field |
+| _(none)_ | Lockscreen is provided by quickshell — see [../quickshell/lock/LockScreen.qml](../quickshell/lock/LockScreen.qml) |
 | [hyprpaper.conf](hyprpaper.conf) | Wallpaper for the `eDP-1` output |
 | [shaders/](shaders/) | Screen shaders (vibrance boost) — see [shaders/README.md](shaders/README.md) |
 
@@ -33,7 +33,7 @@ From [hyprland.conf](hyprland.conf):
 | `SUPER + B` | Launch browser (brave) |
 | `SUPER + E` | Launch file manager (dolphin) |
 | `SUPER + R` | App launcher (rofi -show drun) |
-| `SUPER + L` | Lock screen (hyprlock) |
+| `SUPER + L` | Lock screen (quickshell IPC) |
 | `SUPER + W` | Kill active window |
 | `SUPER + X` | Toggle floating |
 | `SUPER + P` | Pseudo tile (dwindle) |
@@ -83,12 +83,9 @@ From [hyprland.conf](hyprland.conf):
 | Slide-in animation | `class:^(rofi)$` |
 | Float, 360×80, fixed position, popin | Windows titled `Volume` or `Brightness` (the tkinter slider from [../waybar/scripts/slider.py](../waybar/scripts/slider.py)) |
 
-## hyprlock — lockscreen
+## lockscreen — quickshell
 
-- Wallpaper blurred (3 passes, size 8), slightly dimmed, with subtle noise
-- Hour displayed in **pink** `#ff4081`, minute in **cyan** `#64c8ff`, both 125pt GohuFont
-- Date below in white
-- `⚡ $USER` label, then password input with placeholder `⚡ ACCESS DENIED ⚡`
+Lockscreen is implemented in QML at [../quickshell/lock/LockScreen.qml](../quickshell/lock/LockScreen.qml) and triggered via `qs ipc call lock activate`. PAM auth currently references the `hyprlock` PAM config (`/etc/pam.d/hyprlock`) — keep the `hyprlock` package installed for that file, or swap the `config:` line in LockScreen.qml to `system-auth` if uninstalling.
 
 ## hyprpaper
 
