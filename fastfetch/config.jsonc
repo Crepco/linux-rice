@@ -8,9 +8,9 @@
     "logo": {
         "source": "~/.config/fastfetch/logo.png",
         "type": "kitty",
-        "height": 16,
+        "height": 13,
         "padding": {
-            "top": 1,
+            "top": 2,
             "left": 2,
             "right": 3
         }
