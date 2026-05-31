@@ -28,6 +28,16 @@ Item {
         return Theme.Yoake.teal
     }
 
+    Rectangle {
+        anchors.fill: parent
+        anchors.topMargin: 3
+        anchors.bottomMargin: 3
+        radius: 4
+        color: Theme.Yoake.alpha(Theme.Yoake.teal, 0.5)
+        opacity: ma.containsMouse ? 0.18 : 0
+        Behavior on opacity { Anim {} }
+    }
+
     RowLayout {
         id: row
         anchors.centerIn: parent
@@ -37,17 +47,23 @@ Item {
             color: root.color_()
             font.family: Theme.Fonts.family
             font.pixelSize: Theme.Fonts.sizeMd
+            Behavior on color { ColorAnimation { duration: 250 } }
+            scale: root.muted ? 0.85 : 1
+            Behavior on scale { Anim {} }
         }
         Text {
             text: Math.round(root.vol * 100) + "%"
             color: root.color_()
             font.family: Theme.Fonts.family
             font.pixelSize: Theme.Fonts.sizeSm
+            Behavior on color { ColorAnimation { duration: 250 } }
         }
     }
 
     MouseArea {
+        id: ma
         anchors.fill: parent
+        hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         onClicked: mouse => {
