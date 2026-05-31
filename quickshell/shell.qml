@@ -12,6 +12,7 @@ import "notif"
 import "launcher"
 import "lock"
 import "osd"
+import "controls"
 
 ShellRoot {
     Bar {}
@@ -19,4 +20,5 @@ ShellRoot {
     Launcher {}
     LockScreen {}
     Osd {}
+    ControlPanels {}
 }

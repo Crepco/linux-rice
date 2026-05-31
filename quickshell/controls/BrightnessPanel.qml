@@ -4,18 +4,18 @@ import Quickshell
 import Quickshell.Io
 import "../" as Theme
 
-Item {
+// Native brightness control: reads sysfs, writes via brightnessctl.
+ColumnLayout {
     id: root
-    Layout.preferredHeight: 22
-    implicitWidth: row.implicitWidth + 14
+    spacing: 12
 
     readonly property string device: "amdgpu_bl1"
     property int curr: 0
     property int max: 1
-
     function pct() { return max > 0 ? Math.round(100 * curr / max) : 0 }
 
     FileView {
+        id: currFile
         path: "/sys/class/backlight/" + root.device + "/brightness"
         watchChanges: true
         onLoaded: root.curr = parseInt(text())
@@ -26,27 +26,40 @@ Item {
         onLoaded: root.max = parseInt(text())
     }
 
+    Process { id: setProc }
+
     RowLayout {
-        id: row
-        anchors.centerIn: parent
-        spacing: 5
+        Layout.fillWidth: true
+        spacing: 10
         Text {
-            text: "\uF185"  // sun
+            text: ""  // sun
             color: Theme.Yoake.cream
             font.family: Theme.Fonts.family
+            font.pixelSize: Theme.Fonts.sizeLg
+        }
+        Text {
+            text: "Brightness"
+            color: Theme.Yoake.fg
+            font.family: Theme.Fonts.family
             font.pixelSize: Theme.Fonts.sizeMd
+            Layout.fillWidth: true
         }
         Text {
             text: root.pct() + "%"
             color: Theme.Yoake.cream
             font.family: Theme.Fonts.family
-            font.pixelSize: Theme.Fonts.sizeSm
+            font.pixelSize: Theme.Fonts.sizeMd
         }
     }
 
-    MouseArea {
-        anchors.fill: parent
-        cursorShape: Qt.PointingHandCursor
-        onClicked: Theme.Controls.toggle("brightness")
+    ValueSlider {
+        Layout.fillWidth: true
+        from: 1
+        accent: Theme.Yoake.cream
+        value: root.pct()
+        onMoved: v => {
+            setProc.command = ["brightnessctl", "set", Math.round(v) + "%", "-q"]
+            setProc.running = true
+        }
     }
 }
