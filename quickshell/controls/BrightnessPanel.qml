@@ -26,7 +26,7 @@ ColumnLayout {
         onLoaded: root.max = parseInt(text())
     }
 
-    Process { id: setProc }
+    Process { id: setProc; onExited: currFile.reload() }
 
     RowLayout {
         Layout.fillWidth: true

@@ -2,27 +2,32 @@ import QtQuick
 import "../" as Theme
 
 // Minimal horizontal slider (0..100). Drag or click the track to set a value.
-// Emits moved(v) live while dragging; `value` is an input binding from the owner.
+// While dragging it is *uncontrolled* — the handle follows the cursor immediately
+// and emits moved(v); when released it resyncs to the owner's `value`.
 Item {
     id: root
 
-    property real value: 0          // 0..100, driven by owner
+    property real value: 0          // external/actual value, 0..100
     property real from: 0           // brightness uses 1 to avoid full-off
     property color accent: Theme.Yoake.peach
     signal moved(real v)
 
     implicitHeight: 18
 
-    readonly property real frac: Math.min(1, Math.max(0, (value - from) / (100 - from)))
+    // Displayed value: tracks the cursor while pressed, the real value otherwise.
+    property real _val: value
+    onValueChanged: if (!ma.pressed) _val = value
+
+    readonly property real frac: Math.min(1, Math.max(0, (_val - from) / (100 - from)))
 
     function setFromX(px) {
         const f = Math.min(1, Math.max(0, px / width))
-        root.moved(from + f * (100 - from))
+        _val = from + f * (100 - from)
+        root.moved(_val)
     }
 
     // Track
     Rectangle {
-        id: track
         anchors.verticalCenter: parent.verticalCenter
         width: parent.width
         height: 5
