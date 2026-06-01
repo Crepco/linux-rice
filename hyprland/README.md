@@ -1,6 +1,6 @@
 # hyprland
 
-[Hyprland](https://hypr.land) compositor config. Cyberpunk-themed window borders, gradient active border (pink → cyan @ 45°), gentle blur, rounded corners, and a slide animation for workspace switching.
+[Hyprland](https://hypr.land) compositor config. Yoake-themed window borders (peach → cream gradient active border @ 45°), gentle blur, rounded corners, and a slide animation for workspace switching.
 
 Place these files in `~/.config/hypr/` (the tool reads from `hypr/`, not `hyprland/`).
 
@@ -9,17 +9,17 @@ Place these files in `~/.config/hypr/` (the tool reads from `hypr/`, not `hyprla
 | File | Purpose |
 | --- | --- |
 | [hyprland.conf](hyprland.conf) | Main config — monitors, autostart, look & feel, input, keybinds, window rules |
-| _(none)_ | Lockscreen is provided by quickshell — see [../quickshell/lock/LockScreen.qml](../quickshell/lock/LockScreen.qml) |
-| [hyprpaper.conf](hyprpaper.conf) | Wallpaper for the `eDP-1` output |
+| [hyprpaper.conf](hyprpaper.conf) | hyprpaper wallpaper config (note: the active config starts `swww` instead — see below) |
 | [shaders/](shaders/) | Screen shaders (vibrance boost) — see [shaders/README.md](shaders/README.md) |
+
+> Lockscreen, bar, launcher, notifications, and OSD are all provided by Quickshell — see [../quickshell/](../quickshell/).
 
 ## Autostart
 
 From [hyprland.conf](hyprland.conf):
 
-- `waybar` — top bar
-- `dunst` — notifications
-- `swww-daemon` + sets `~/Pictures/wallpapers/wallpaper.png` via fade transition
+- `quickshell` — the desktop shell (bar, launcher, notifications, OSD, lockscreen)
+- `swww` (via `awww`) — sets `~/Pictures/wallpapers/wallpaper.png` with a fade transition
 
 ## Keybinds
 
@@ -32,8 +32,8 @@ From [hyprland.conf](hyprland.conf):
 | `SUPER + T` | Launch terminal (kitty) |
 | `SUPER + B` | Launch browser (brave) |
 | `SUPER + E` | Launch file manager (dolphin) |
-| `SUPER + R` | App launcher (rofi -show drun) |
-| `SUPER + L` | Lock screen (quickshell IPC) |
+| `SUPER + R` | App launcher (Quickshell — `qs ipc call launcher toggle`) |
+| `SUPER + L` | Lock screen (Quickshell — `qs ipc call lock activate`) |
 | `SUPER + W` | Kill active window |
 | `SUPER + X` | Toggle floating |
 | `SUPER + P` | Pseudo tile (dwindle) |
@@ -62,16 +62,16 @@ From [hyprland.conf](hyprland.conf):
 
 ### Media / hardware keys
 
-- `XF86AudioRaiseVolume` / `LowerVolume` / `Mute` → `wpctl`
-- `XF86MonBrightnessUp` / `Down` → `brightnessctl -e4 -n2 set 5%±`
+- `XF86AudioRaiseVolume` / `LowerVolume` / `Mute` → `wpctl` (+ Quickshell volume OSD)
+- `XF86MonBrightnessUp` / `Down` → `brightnessctl -e4 -n2 set 5%±` (+ Quickshell brightness OSD)
 - `XF86AudioPlay` / `Pause` / `Next` / `Prev` → `playerctl`
 
 ## Look & feel
 
 - **Gaps:** in 1px, out 2px
-- **Borders:** 2px, gradient `#ff4081 → #64c8ff @ 45°` active, dim `#333348` inactive
+- **Borders:** 2px, gradient `#e2aaa1 → #e9cdb0 @ 45°` (peach → cream) active, dim `#4d4f63` inactive
 - **Rounding:** 10px (power 2)
-- **Blur:** size 3, 1 pass, vibrancy 0.1696
+- **Blur:** size 3, 1 pass
 - **Opacity:** active 1.0, inactive 0.95
 - **Screen shader:** [shaders/vibrance.glsl](shaders/vibrance.glsl) (boosts saturation)
 - **Layout:** dwindle with `preserve_split` and pseudotile
@@ -80,16 +80,15 @@ From [hyprland.conf](hyprland.conf):
 
 | Rule | Target |
 | --- | --- |
-| Slide-in animation | `class:^(rofi)$` |
-| Float, 360×80, fixed position, popin | Windows titled `Volume` or `Brightness` (the tkinter slider from [../waybar/scripts/slider.py](../waybar/scripts/slider.py)) |
+| Opacity `0.60 / 0.50` (so the blurred wallpaper bleeds through) | `class:Spotify` |
 
-## lockscreen — quickshell
+## lockscreen — Quickshell
 
-Lockscreen is implemented in QML at [../quickshell/lock/LockScreen.qml](../quickshell/lock/LockScreen.qml) and triggered via `qs ipc call lock activate`. PAM auth currently references the `hyprlock` PAM config (`/etc/pam.d/hyprlock`) — keep the `hyprlock` package installed for that file, or swap the `config:` line in LockScreen.qml to `system-auth` if uninstalling.
+Implemented in QML at [../quickshell/lock/LockScreen.qml](../quickshell/lock/LockScreen.qml), triggered via `qs ipc call lock activate`. PAM auth references the `hyprlock` PAM config (`/etc/pam.d/hyprlock`) — keep the `hyprlock` package installed for that file, or swap the `config:` line in `LockScreen.qml` to `system-auth` if uninstalling.
 
 ## hyprpaper
 
-Hard-codes `/home/crepco/Downloads/wallpaper2_rgb.png` for the `eDP-1` output. Note: [hyprland.conf](hyprland.conf) also starts `swww` with a different wallpaper — only one will visibly apply depending on which loads last.
+[hyprpaper.conf](hyprpaper.conf) is kept for reference, but the active [hyprland.conf](hyprland.conf) starts **swww** (via `awww`) instead — that's the wallpaper mechanism actually in use.
 
 ## Notes
 

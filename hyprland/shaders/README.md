@@ -6,7 +6,7 @@ Custom GLSL screen shaders applied by Hyprland via the `decoration { screen_shad
 
 | File | Effect |
 | --- | --- |
-| [vibrance.glsl](vibrance.glsl) | Boosts color saturation to **1.9** — a "digital vibrance" look that punches up the cyberpunk palette |
+| [vibrance.glsl](vibrance.glsl) | Boosts color saturation to **1.9** — a "digital vibrance" look that punches up the Yoake palette |
 
 ## How it works
 
@@ -16,7 +16,7 @@ Tweak the `saturation` constant in the shader to taste:
 
 - `1.0` → no change
 - `1.3 – 1.6` → subtle vibrance
-- `1.9` → current, punchy neon look
+- `1.9` → current, punchy look
 - `< 1.0` → desaturated
 
 After editing, reload Hyprland (`hyprctl reload`) to apply.

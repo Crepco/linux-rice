@@ -1,12 +1,13 @@
 # fastfetch
 
-[fastfetch](https://github.com/fastfetch-cli/fastfetch) terminal system info. Boxed layout with **pink borders**, **cyan icons**, **white key labels**, dim italic values — plus an inline image logo on the left rendered via the kitty graphics protocol.
+[fastfetch](https://github.com/fastfetch-cli/fastfetch) terminal system info. An inline image logo on the left (rendered via the kitty graphics protocol) beside a simple key/value module list with **peach keys**, topped and tailed by a Nerd Font color bar.
 
 ## Files
 
 | File | Purpose |
 | --- | --- |
 | [config.jsonc](config.jsonc) | Logo, modules, layout, colors |
+| `logo.png` | The logo image (referenced by `config.jsonc`) |
 
 ## Install
 
@@ -16,69 +17,33 @@ sudo pacman -S fastfetch
 
 ## Logo image
 
-The config expects an image at `~/Pictures/fetch-logo.png`. Drop **any** PNG/JPG there:
+The config renders `~/.config/fastfetch/logo.png` via the kitty graphics protocol (`"type": "kitty"`, height 13). Replace `logo.png` with any PNG to change it.
 
-```bash
-mkdir -p ~/Pictures
-cp /path/to/some-image.png ~/Pictures/fetch-logo.png
-```
-
-If the file is missing, fastfetch falls back to the built-in Arch ASCII logo.
-
-The kitty graphics protocol only works in kitty — running fastfetch elsewhere (TTY, other terminals) shows the ASCII fallback. Switch `"type"` in the `logo` block to `"sixel"` or `"chafa"` for cross-terminal support.
-
-## Layout
-
-```
-╭───────────╮
-│  user    │ crepco
-│ 󰅐 uptime  │ 1 day, 4 hours, 23 mins
-│ 󰣇 distro  │ Arch Linux
-│  kernel  │ 6.18.4-arch1-1
-│  wm      │ Hyprland
-│ 󰇄 desktop │ (skipped if no DE)
-│  term    │ kitty
-│  shell   │ bash
-│ 󰏖 apps    │ 759 (pacman)   1 (flatpak)
-│ 󰉉 disk    │ 20.9 GiB / 46.0 GiB (45%)
-│  memory  │ 5.5 GiB / 14.8 GiB (37%)
-│ 󱦟 os age  │ 237 days
-├───────────┤
-│  colors  │ ● ● ● ● ● ● ● ●
-╰───────────╯
-```
+The kitty graphics protocol only works in kitty — running fastfetch elsewhere (TTY, other terminals) won't show the image. Switch `"type"` in the `logo` block to `"sixel"` or `"chafa"` for cross-terminal support.
 
 ## Colors
 
-Format strings use truecolor SGR sequences for portability:
-
-| Element | Color | Code |
-| --- | --- | --- |
-| Box borders | hot pink | `{#38;2;255;64;129}` (`#ff4081`) |
-| Module icons | electric cyan | `{#38;2;100;200;255}` (`#64c8ff`) |
-| Key labels | white | `{#white}` |
-| Values | dim italic white | `{#2}{#3}` |
-| Reset | — | `{#0}` |
-
-To change the accent color globally, find-replace `38;2;255;64;129` (pink) or `38;2;100;200;255` (cyan) in [config.jsonc](config.jsonc).
+Keys use ANSI color `31` (terminal `color1`), which resolves to **peach `#e2aaa1`** through the kitty [Yoake theme](../kitty/yoake.conf). The decorative bars at the top and bottom step through ANSI `31`–`36`. Because the colors are ANSI-indexed, fastfetch automatically matches whatever terminal palette is active.
 
 ## Modules
 
-| Key | Module | Source |
-| --- | --- | --- |
-|  user | `title` | Just the username |
-| 󰅐 uptime | `uptime` | days / hours / mins |
-| 󰣇 distro | `os` | distro pretty name |
-|  kernel | `kernel` | kernel release |
-|  wm | `wm` | window manager |
-| 󰇄 desktop | `de` | desktop environment (skipped if none) |
-|  term | `terminal` | terminal name |
-|  shell | `shell` | shell name |
-| 󰏖 apps | `command` | pacman package count + flatpak count (if installed) |
-| 󰉉 disk | `disk` | `/` mount only |
-|  memory | `memory` | used / total |
-| 󱦟 os age | `command` | days since OS install (uses `stat -c %W /`) |
-|  colors | `colors` | 16-circle color preview |
+In order, from [config.jsonc](config.jsonc):
+
+| Key | Module |
+| --- | --- |
+| (color bar) | `custom` — ANSI swatch row |
+|  title | `title` — user@host |
+|  os | `os` |
+|  kernel | `kernel` |
+| 󰏗 packages | `packages` (pacman) |
+|  shell | `shell` |
+|  terminal | `terminal` |
+|  wm | `wm` |
+|  cursor | `cursor` |
+|  terminalfont | `terminalfont` |
+| 󰔟 uptime | `uptime` |
+|  datetime | `datetime` |
+| (color bar) | `custom` — ANSI swatch row |
 
 ## Run
 
@@ -86,8 +51,4 @@ To change the accent color globally, find-replace `38;2;255;64;129` (pink) or `3
 fastfetch
 ```
 
-To run on every terminal launch, add to `~/.bashrc`:
-
-```bash
-fastfetch
-```
+To run on every terminal launch, add `fastfetch` to `~/.bashrc`.

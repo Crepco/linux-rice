@@ -20,6 +20,25 @@ ColumnLayout {
 
     function refresh() { busy = true; listProc.running = true }
 
+    // Bluetooth SIG company identifiers → vendor name (common ones only).
+    function vendor(id) {
+        switch (id) {
+            case 76:  return "Apple"
+            case 6:   return "Microsoft"
+            case 117: return "Samsung"
+            case 224: return "Google"
+            case 301: return "Sony"
+            case 158: return "Bose"
+            case 12:  return "Logitech"
+            case 135: return "Garmin"
+            case 637: return "Huawei"
+            case 911: return "Xiaomi"
+            case 89:  return "Nordic"
+            case 343: return "JBL/Harman"
+            default:  return ""
+        }
+    }
+
     // ── Build the device list (paired + currently-discovered) ──
     Process {
         id: listProc
@@ -31,7 +50,9 @@ ColumnLayout {
             "    c=$(echo \"$i\" | grep -c 'Connected: yes'); " +
             "    p=$(echo \"$i\" | grep -c 'Paired: yes'); " +
             "    n=$(echo \"$i\" | grep -m1 'Name:' | cut -d' ' -f2-); " +
-            "    echo \"DEV:$c:$p:$mac:$n\"; " +
+            "    r=$(echo \"$i\" | grep -m1 'RSSI:' | grep -o '(-*[0-9]*)' | tr -d '()'); " +
+            "    m=$(echo \"$i\" | grep -m1 'ManufacturerData.Key:' | grep -o '0x[0-9a-fA-F]*' | head -1); " +
+            "    echo \"DEV:$c:$p:$r:${m:-0}:$mac:$n\"; " +
             "  done; " +
             "fi"]
         stdout: StdioCollector {
@@ -42,22 +63,32 @@ ColumnLayout {
                     if (raw.startsWith("POWERED:")) { root.powered = raw.substring(8).trim() !== "0"; continue }
                     if (raw.startsWith("DEV:")) {
                         const p = raw.split(":")
-                        if (p.length < 10) continue
+                        if (p.length < 12) continue
                         const connected = p[1] === "1"
                         const paired = p[2] === "1"
-                        const mac = p.slice(3, 9).join(":")
-                        const name = p.slice(9).join(":")
+                        const rssi = parseInt(p[3])            // NaN if not advertising
+                        const mfg = parseInt(p[4])             // BT company id (0x.. → int)
+                        const mac = p.slice(5, 11).join(":")
+                        const name = p.slice(11).join(":")
                         if (!mac || seen[mac]) continue
-                        // Skip nameless discovered devices (random BLE addresses /
-                        // beacons that never advertise a friendly name — just MAC noise).
-                        if (!paired && !connected && !name) continue
+                        // Hide nameless, far-away discovered devices (random BLE addresses /
+                        // neighbour noise). Keep them only if close (strong signal).
+                        const isNew = !paired && !connected
+                        if (isNew && !name && !(rssi >= -70)) continue
                         seen[mac] = true
-                        devs.push({ mac: mac, name: name || mac, connected: connected, paired: paired })
+                        // Devices broadcasting a friendly name use it; privacy beacons don't,
+                        // so fall back to the advertised vendor, then a short MAC tag.
+                        const v = root.vendor(mfg)
+                        const label = name ? name
+                                    : (v ? v + " device" : "Unknown device") + "  ·  " + mac.slice(-5)
+                        devs.push({ mac: mac, name: label, named: !!name, rssi: rssi,
+                                    connected: connected, paired: paired })
                     }
                 }
                 // connected → paired → discovered, then alpha
                 devs.sort((a, b) =>
-                    (b.connected - a.connected) || (b.paired - a.paired) || a.name.localeCompare(b.name))
+                    (b.connected - a.connected) || (b.paired - a.paired) ||
+                    (b.named - a.named) || a.name.localeCompare(b.name))
                 root.devices = devs
                 root.busy = false
             }
