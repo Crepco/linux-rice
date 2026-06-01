@@ -8,11 +8,8 @@ import "../" as Theme
 Rectangle {
     id: root
     Layout.preferredHeight: 22
-    implicitWidth: row.implicitWidth + 16
-    radius: 6
-    color: Theme.Yoake.bg
-    border.color: Theme.Yoake.alpha(Theme.Yoake.peach, 0.18)
-    border.width: 1
+    implicitWidth: row.implicitWidth + 8
+    color: "transparent"
 
     property real cpuPercent: 0
     property real lastIdle: 0

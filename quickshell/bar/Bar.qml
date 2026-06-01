@@ -18,49 +18,50 @@ Scope {
                 right: true
             }
 
-            implicitHeight: 32
+            implicitHeight: 40
             color: "transparent"
 
             // Force layer-shell to TOP and reserve space
             WlrLayershell.layer: WlrLayer.Top
             WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
             exclusionMode: ExclusionMode.Normal
-            exclusiveZone: 32
+            exclusiveZone: 40
 
-            RowLayout {
-                anchors.fill: parent
-                anchors.leftMargin: 8
-                anchors.rightMargin: 8
-                spacing: 0
+            // ─── Centered solid island ───
+            Rectangle {
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.top: parent.top
+                anchors.topMargin: 6
+                height: 30
+                radius: 10
+                color: Theme.Yoake.bg
+                border.color: Theme.Yoake.alpha(Theme.Yoake.peach, 0.20)
+                border.width: 1
+                implicitWidth: content.implicitWidth + 24
 
-                // ─── LEFT ───
                 RowLayout {
-                    spacing: 5
-                    Layout.alignment: Qt.AlignLeft
+                    id: content
+                    anchors.centerIn: parent
+                    spacing: 10
+
                     ArchMenu {}
-                }
-
-                Item { Layout.fillWidth: true }
-
-                // ─── CENTER ───
-                RowLayout {
-                    spacing: 6
-                    Layout.alignment: Qt.AlignHCenter
-                    Clock {}
+                    Separator {}
                     Workspaces {}
-                }
-
-                Item { Layout.fillWidth: true }
-
-                // ─── RIGHT ───
-                RowLayout {
-                    spacing: 6
-                    Layout.alignment: Qt.AlignRight
+                    Clock {}
+                    Separator {}
                     Cpu {}
                     Backlight {}
                     Network {}
                     PowerButton {}
                 }
+            }
+
+            // thin vertical divider between groups
+            component Separator: Rectangle {
+                Layout.preferredWidth: 1
+                Layout.preferredHeight: 14
+                Layout.alignment: Qt.AlignVCenter
+                color: Theme.Yoake.alpha(Theme.Yoake.peach, 0.18)
             }
         }
     }

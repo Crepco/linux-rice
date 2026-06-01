@@ -9,13 +9,11 @@ Rectangle {
     implicitWidth: 34
     radius: 6
     color: ma.containsMouse || Theme.Controls.open === "system"
-         ? Theme.Yoake.alpha(Theme.Yoake.peach, 0.18) : Theme.Yoake.bg
-    border.color: Theme.Yoake.alpha(Theme.Yoake.peach, 0.18)
-    border.width: 1
+         ? Theme.Yoake.alpha(Theme.Yoake.peach, 0.18) : "transparent"
 
     Text {
         anchors.centerIn: parent
-        text: ""  // Arch Linux logo (Nerd Font)
+        text: ""  // Arch Linux logo (Nerd Font)
         color: Theme.Yoake.peach
         font.family: Theme.Fonts.family
         font.pixelSize: Theme.Fonts.sizeMd

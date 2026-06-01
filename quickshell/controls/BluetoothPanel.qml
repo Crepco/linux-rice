@@ -143,7 +143,7 @@ ColumnLayout {
         Layout.fillWidth: true
         spacing: 8
         Text {
-            text: root.powered ? "" : ""
+            text: root.powered ? "\uF293" : "\uF294"
             color: root.powered ? Theme.Yoake.slateBlue : Theme.Yoake.muted
             font.family: Theme.Fonts.family
             font.pixelSize: Theme.Fonts.sizeLg
@@ -162,7 +162,7 @@ ColumnLayout {
             onTapped: root.scanning ? root.stopScan() : root.startScan()
         }
         PillButton {
-            text: root.powered ? "On" : "Off"
+            text: root.powered ? "\uF293" : "\uF294"
             accent: root.powered ? Theme.Yoake.slateBlue : Theme.Yoake.muted
             onTapped: root.run("bluetoothctl power " + (root.powered ? "off" : "on"))
         }
@@ -200,7 +200,7 @@ ColumnLayout {
                     anchors.rightMargin: 8
                     spacing: 8
                     Text {
-                        text: modelData.connected ? "" : (modelData.paired ? "" : "󰂰")
+                        text: modelData.connected ? "\uF293" : (modelData.paired ? "\uF293" : "\uF293")
                         color: modelData.connected ? Theme.Yoake.slateBlue
                              : modelData.paired ? Theme.Yoake.fgDim : Theme.Yoake.muted
                         font.family: Theme.Fonts.family
@@ -216,7 +216,7 @@ ColumnLayout {
                         Layout.fillWidth: true
                     }
                     Text {
-                        text: modelData.connected ? "connected" : (modelData.paired ? "" : "pair")
+                        text: modelData.connected ? "\uF293" : (modelData.paired ? "\uF293" : "\uF293")
                         color: Theme.Yoake.muted
                         font.family: Theme.Fonts.family
                         font.pixelSize: Theme.Fonts.sizeSm

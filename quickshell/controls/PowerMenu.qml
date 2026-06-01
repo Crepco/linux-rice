@@ -11,11 +11,11 @@ ColumnLayout {
     function run(cmd) { Quickshell.execDetached(["bash", "-c", cmd]); Theme.Controls.close() }
 
     readonly property var actions: [
-        { icon: "",  label: "Lock",     accent: Theme.Yoake.slateBlue, cmd: "qs ipc call lock activate" },
-        { icon: "",  label: "Logout",   accent: Theme.Yoake.cream,     cmd: "hyprctl dispatch exit" },
-        { icon: "",  label: "Suspend",  accent: Theme.Yoake.sage,      cmd: "systemctl suspend" },
-        { icon: "",  label: "Reboot",   accent: Theme.Yoake.peach,     cmd: "systemctl reboot" },
-        { icon: "",  label: "Shutdown", accent: Theme.Yoake.rose,      cmd: "systemctl poweroff" }
+        { icon: "\uF023",  label: "Lock",     accent: Theme.Yoake.slateBlue, cmd: "qs ipc call lock activate" },
+        { icon: "\uF08B",  label: "Logout",   accent: Theme.Yoake.cream,     cmd: "hyprctl dispatch exit" },
+        { icon: "\uF186",  label: "Suspend",  accent: Theme.Yoake.sage,      cmd: "systemctl suspend" },
+        { icon: "\uF021",  label: "Reboot",   accent: Theme.Yoake.peach,     cmd: "systemctl reboot" },
+        { icon: "\uF011",  label: "Shutdown", accent: Theme.Yoake.rose,      cmd: "systemctl poweroff" }
     ]
 
     Repeater {

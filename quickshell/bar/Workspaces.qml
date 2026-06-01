@@ -4,97 +4,61 @@ import Quickshell
 import Quickshell.Hyprland
 import "../" as Theme
 
-// Caelestia-style workspaces, ported to a horizontal (top) bar.
-// Signature move: a single active-indicator pill that SLIDES between
-// workspaces with springy easing, instead of colours flipping instantly.
-Rectangle {
+// Dot/pill workspace indicator: the active workspace is an elongated pill that
+// stretches; occupied workspaces are dots; empty ones are dim dots.
+Item {
     id: root
 
     Layout.preferredHeight: 22
-    implicitWidth: cells.implicitWidth + 8
-    radius: 6
-    color: Theme.Yoake.bg
-    border.color: Theme.Yoake.alpha(Theme.Yoake.peach, 0.18)
-    border.width: 1
+    implicitWidth: dots.implicitWidth
+    implicitHeight: 10
 
-    readonly property int count: 10
-    readonly property int cellW: 24
-    readonly property int cellH: 18
     readonly property int activeWs: Hyprland.focusedWorkspace?.id ?? 1
 
     function occupied(id) {
-        const ws = Hyprland.workspaces.values.find(w => w.id === id);
-        return ws ? (ws.lastIpcObject?.windows ?? 0) > 0 : false;
+        const ws = Hyprland.workspaces.values.find(w => w.id === id)
+        return ws ? (ws.lastIpcObject?.windows ?? 0) > 0 : false
     }
 
-    Item {
-        id: cells
+    // How many to show: at least 5, growing to cover the highest occupied/active.
+    function shownCount() {
+        let n = Math.max(5, root.activeWs)
+        for (const w of Hyprland.workspaces.values)
+            if (w.id > n && w.id <= 10) n = w.id
+        return n
+    }
+
+    RowLayout {
+        id: dots
         anchors.centerIn: parent
-        implicitWidth: root.count * root.cellW
-        implicitHeight: root.cellH
+        spacing: 6
 
-        // ─── Sliding active indicator (Caelestia signature) ───
-        Rectangle {
-            width: root.cellW
-            height: root.cellH
-            radius: 5
-            x: (root.activeWs - 1) * root.cellW
-            color: Theme.Yoake.alpha(Theme.Yoake.peach, 0.18)
-            border.color: Theme.Yoake.alpha(Theme.Yoake.peach, 0.55)
-            border.width: 1
-
-            Behavior on x { Anim {} }
-        }
-
-        // ─── Workspace cells ───
         Repeater {
-            model: root.count
+            model: root.shownCount()
 
-            Item {
-                id: cell
+            Rectangle {
+                id: dot
                 required property int index
                 readonly property int wsId: index + 1
                 readonly property bool active: root.activeWs === wsId
                 readonly property bool isOccupied: root.occupied(wsId)
 
-                x: index * root.cellW
-                width: root.cellW
-                height: root.cellH
+                Layout.alignment: Qt.AlignVCenter
+                implicitWidth: active ? 22 : 8
+                implicitHeight: 8
+                radius: 4
+                color: active ? Theme.Yoake.peach
+                     : isOccupied ? Theme.Yoake.cream
+                     : Theme.Yoake.alpha(Theme.Yoake.fg, 0.28)
 
-                // Hover state layer (animated — no binding breakage)
-                Rectangle {
-                    anchors.fill: parent
-                    anchors.margins: 2
-                    radius: 4
-                    color: Theme.Yoake.surface
-                    opacity: ma.containsMouse && !cell.active ? 0.6 : 0
-                    Behavior on opacity { Anim {} }
-                }
-
-                Text {
-                    anchors.centerIn: parent
-                    text: cell.wsId
-                    color: cell.active
-                        ? Theme.Yoake.peach
-                        : cell.isOccupied
-                            ? Theme.Yoake.fgDim
-                            : Theme.Yoake.alpha(Theme.Yoake.fg, 0.4)
-                    font.family: Theme.Fonts.family
-                    font.pixelSize: Theme.Fonts.sizeSm
-                    font.weight: cell.active ? Font.DemiBold : Font.Normal
-                    // pronounced pop on the active workspace
-                    scale: cell.active ? 1.3 : (cell.isOccupied ? 0.95 : 0.85)
-
-                    Behavior on color { ColorAnimation { duration: 250 } }
-                    Behavior on scale { Anim {} }
-                }
+                Behavior on implicitWidth { Anim {} }
+                Behavior on color { ColorAnimation { duration: 220 } }
 
                 MouseArea {
-                    id: ma
                     anchors.fill: parent
+                    anchors.margins: -4
                     cursorShape: Qt.PointingHandCursor
-                    hoverEnabled: true
-                    onClicked: Hyprland.dispatch("workspace " + cell.wsId)
+                    onClicked: Hyprland.dispatch("workspace " + dot.wsId)
                 }
             }
         }

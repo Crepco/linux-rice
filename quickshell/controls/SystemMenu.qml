@@ -25,7 +25,7 @@ ColumnLayout {
         readonly property bool present: dev?.isLaptopBattery ?? false
 
         Text {
-            text: parent.charging ? "" : (parent.pct >= 80 ? "" : parent.pct >= 50 ? "" : parent.pct >= 20 ? "" : "")
+            text: parent.charging ? "\uF0E7" : (parent.pct >= 80 ? "\uF240" : parent.pct >= 50 ? "\uF242" : parent.pct >= 20 ? "\uF243" : "\uF244")
             color: !parent.present ? Theme.Yoake.muted
                  : parent.pct <= 15 && !parent.charging ? Theme.Yoake.rose
                  : parent.charging ? Theme.Yoake.sage : Theme.Yoake.cream

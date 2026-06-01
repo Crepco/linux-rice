@@ -9,13 +9,11 @@ Rectangle {
     implicitWidth: 30
     radius: 6
     color: ma.containsMouse || Theme.Controls.open === "power"
-         ? Theme.Yoake.alpha(Theme.Yoake.rose, 0.22) : Theme.Yoake.bg
-    border.color: Theme.Yoake.alpha(Theme.Yoake.rose, 0.30)
-    border.width: 1
+         ? Theme.Yoake.alpha(Theme.Yoake.rose, 0.22) : "transparent"
 
     Text {
         anchors.centerIn: parent
-        text: ""  // power
+        text: ""  // power
         color: Theme.Yoake.rose
         font.family: Theme.Fonts.family
         font.pixelSize: Theme.Fonts.sizeMd

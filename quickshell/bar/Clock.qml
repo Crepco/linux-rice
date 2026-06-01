@@ -7,10 +7,7 @@ Rectangle {
     Layout.preferredHeight: 22
     Layout.alignment: Qt.AlignVCenter
     implicitWidth: clockText.implicitWidth + 22
-    radius: 6
-    color: Theme.Yoake.bg
-    border.color: Theme.Yoake.alpha(Theme.Yoake.cream, 0.28)
-    border.width: 1
+    color: "transparent"
 
     property string currentTime: ""
 
