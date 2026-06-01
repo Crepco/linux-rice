@@ -62,6 +62,17 @@ Item {
             font.family: Theme.Fonts.family
             font.pixelSize: Theme.Fonts.sizeMd
         }
+        Text {
+            text: root.netState === "wifi" ? root.ssid
+                : root.netState === "ethernet" ? "Wired"
+                : "Offline"
+            color: root.color_()
+            font.family: Theme.Fonts.family
+            font.pixelSize: Theme.Fonts.sizeSm
+            elide: Text.ElideRight
+            Layout.maximumWidth: 140
+            visible: text !== ""
+        }
     }
 
     MouseArea {

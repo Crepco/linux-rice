@@ -37,15 +37,18 @@ Scope {
                 RowLayout {
                     spacing: 5
                     Layout.alignment: Qt.AlignLeft
-                    Workspaces {}
-                    Uptime {}
-                    Cpu {}
+                    ArchMenu {}
                 }
 
                 Item { Layout.fillWidth: true }
 
                 // ─── CENTER ───
-                Clock {}
+                RowLayout {
+                    spacing: 6
+                    Layout.alignment: Qt.AlignHCenter
+                    Clock {}
+                    Workspaces {}
+                }
 
                 Item { Layout.fillWidth: true }
 
@@ -53,8 +56,10 @@ Scope {
                 RowLayout {
                     spacing: 6
                     Layout.alignment: Qt.AlignRight
-                    SystemTray {}
-                    SystemPills {}
+                    Cpu {}
+                    Backlight {}
+                    Network {}
+                    PowerButton {}
                 }
             }
         }

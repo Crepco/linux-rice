@@ -29,12 +29,17 @@ Scope {
                 MouseArea { anchors.fill: parent; onClicked: Theme.Controls.close() }
             }
 
-            // Dropdown card, anchored under the right side of the bar
+            // Dropdown card — drops from the left under the Arch icon for the
+            // system menu, from the right under the bar pills otherwise.
+            readonly property bool leftSide: Theme.Controls.open === "system"
+
             Rectangle {
                 id: card
                 anchors.top: parent.top
-                anchors.right: parent.right
+                anchors.left: parent.leftSide ? parent.left : undefined
+                anchors.right: parent.leftSide ? undefined : parent.right
                 anchors.topMargin: 40      // bar is 32 high
+                anchors.leftMargin: 8
                 anchors.rightMargin: 8
                 width: 320
                 implicitHeight: content.implicitHeight + 28
@@ -54,6 +59,8 @@ Scope {
                     anchors.margins: 14
                     sourceComponent: {
                         switch (Theme.Controls.open) {
+                            case "system":     return systemC
+                            case "power":      return powerC
                             case "volume":     return volumeC
                             case "brightness": return brightnessC
                             case "wifi":       return wifiC
@@ -64,6 +71,8 @@ Scope {
                 }
             }
 
+            Component { id: systemC;     SystemMenu {} }
+            Component { id: powerC;      PowerMenu {} }
             Component { id: volumeC;     VolumePanel {} }
             Component { id: brightnessC; BrightnessPanel {} }
             Component { id: wifiC;       WifiPanel {} }
