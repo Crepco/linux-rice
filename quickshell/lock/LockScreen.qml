@@ -178,11 +178,13 @@ Scope {
                 interval: 1000; running: true; repeat: true; triggeredOnStart: true
                 onTriggered: {
                     const now = new Date()
-                    hourText.text = String(now.getHours()).padStart(2, '0')
+                    const h = now.getHours()
+                    hourText.text = String(h % 12 || 12).padStart(2, '0')
                     minuteText.text = String(now.getMinutes()).padStart(2, '0')
                     const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
                     const months = ['January','February','March','April','May','June','July','August','September','October','November','December']
                     dateText.text = days[now.getDay()] + ", " + now.getDate() + " " + months[now.getMonth()]
+                                  + "  ·  " + (h >= 12 ? "PM" : "AM")
                 }
             }
 

@@ -36,7 +36,7 @@ Rectangle {
         anchors.centerIn: parent
         spacing: 6
         Text {
-            text: ""  // memory
+            text: ""  // nf-md-memory
             color: Theme.Yoake.sage
             font.family: Theme.Fonts.family
             font.pixelSize: Theme.Fonts.sizeMd

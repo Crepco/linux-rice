@@ -3,55 +3,74 @@ import QtQuick.Layouts
 import Quickshell
 import "../" as Theme
 
-// Power dropdown opened from the power button.
-ColumnLayout {
+// Power menu — horizontal wlogout-style row of big rounded icon tiles,
+// shown centered on screen with a dimmed backdrop (see ControlPanels).
+RowLayout {
     id: root
-    spacing: 4
+    spacing: 12
 
     function run(cmd) { Quickshell.execDetached(["bash", "-c", cmd]); Theme.Controls.close() }
 
     readonly property var actions: [
-        { icon: "\uF023",  label: "Lock",     accent: Theme.Yoake.slateBlue, cmd: "qs ipc call lock activate" },
-        { icon: "\uF08B",  label: "Logout",   accent: Theme.Yoake.cream,     cmd: "hyprctl dispatch exit" },
-        { icon: "\uF186",  label: "Suspend",  accent: Theme.Yoake.sage,      cmd: "systemctl suspend" },
-        { icon: "\uF021",  label: "Reboot",   accent: Theme.Yoake.peach,     cmd: "systemctl reboot" },
-        { icon: "\uF011",  label: "Shutdown", accent: Theme.Yoake.rose,      cmd: "systemctl poweroff" }
+        { icon: "", label: "Shutdown", accent: Theme.Yoake.rose,      cmd: "systemctl poweroff" },
+        { icon: "", label: "Reboot",   accent: Theme.Yoake.peach,     cmd: "systemctl reboot" },
+        { icon: "", label: "Lock",     accent: Theme.Yoake.slateBlue, cmd: "qs ipc call lock activate" },
+        { icon: "", label: "Suspend",  accent: Theme.Yoake.sage,      cmd: "systemctl suspend" },
+        { icon: "", label: "Logout",   accent: Theme.Yoake.cream,     cmd: "hyprctl dispatch exit" },
+        { icon: "", label: "Cancel",   accent: Theme.Yoake.muted,     cmd: "" }
     ]
 
     Repeater {
         model: root.actions
-        delegate: Rectangle {
+        delegate: ColumnLayout {
+            id: entry
             required property var modelData
-            Layout.fillWidth: true
-            Layout.preferredHeight: 34
-            radius: 6
-            color: ma.containsMouse ? Theme.Yoake.alpha(modelData.accent, 0.20) : "transparent"
+            spacing: 8
 
-            RowLayout {
-                anchors.fill: parent
-                anchors.leftMargin: 10
-                anchors.rightMargin: 10
-                spacing: 12
+            Rectangle {
+                id: tile
+                Layout.preferredWidth: 84
+                Layout.preferredHeight: 84
+                radius: 20
+                color: tileMa.containsMouse
+                    ? Theme.Yoake.alpha(entry.modelData.accent, 0.22)
+                    : Theme.Yoake.surfaceAlt
+                border.color: tileMa.containsMouse
+                    ? entry.modelData.accent
+                    : Theme.Yoake.alpha(Theme.Yoake.border, 0.6)
+                border.width: 1
+                scale: tileMa.containsMouse ? 1.06 : 1.0
+
+                Behavior on scale { NumberAnimation { duration: 130; easing.type: Easing.OutBack } }
+                Behavior on color { ColorAnimation { duration: 130 } }
+
                 Text {
-                    text: modelData.icon
-                    color: modelData.accent
+                    anchors.centerIn: parent
+                    text: entry.modelData.icon
+                    color: tileMa.containsMouse ? entry.modelData.accent : Theme.Yoake.cream
                     font.family: Theme.Fonts.family
-                    font.pixelSize: Theme.Fonts.sizeMd
+                    font.pixelSize: 30
+                    Behavior on color { ColorAnimation { duration: 130 } }
                 }
-                Text {
-                    text: modelData.label
-                    color: Theme.Yoake.fg
-                    font.family: Theme.Fonts.family
-                    font.pixelSize: Theme.Fonts.sizeSm
-                    Layout.fillWidth: true
+
+                MouseArea {
+                    id: tileMa
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: entry.modelData.cmd
+                        ? root.run(entry.modelData.cmd)
+                        : Theme.Controls.close()
                 }
             }
-            MouseArea {
-                id: ma
-                anchors.fill: parent
-                hoverEnabled: true
-                cursorShape: Qt.PointingHandCursor
-                onClicked: root.run(modelData.cmd)
+
+            Text {
+                Layout.alignment: Qt.AlignHCenter
+                text: entry.modelData.label
+                color: tileMa.containsMouse ? entry.modelData.accent : Theme.Yoake.fgDim
+                font.family: Theme.Fonts.family
+                font.pixelSize: Theme.Fonts.sizeSm
+                Behavior on color { ColorAnimation { duration: 130 } }
             }
         }
     }
