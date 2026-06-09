@@ -1,3 +1,4 @@
 singleton Yoake 1.0 Yoake.qml
 singleton Fonts 1.0 Fonts.qml
 singleton Controls 1.0 Controls.qml
+singleton Brightness 1.0 Brightness.qml

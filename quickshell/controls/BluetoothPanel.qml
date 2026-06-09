@@ -122,7 +122,11 @@ ColumnLayout {
 
     // Fire-and-forget actions, then refresh
     Process { id: actionProc; onExited: refreshTimer.restart() }
-    Timer { id: refreshTimer; interval: 800; onTriggered: root.refresh() }
+    Timer {
+        id: refreshTimer
+        interval: 800
+        onTriggered: { root.refresh(); interval = 800 }  // restore after one-off longer waits
+    }
     function run(cmd) { actionProc.command = ["bash", "-c", cmd]; actionProc.running = true }
 
     function onDeviceClicked(d) {
@@ -200,7 +204,7 @@ ColumnLayout {
                     anchors.rightMargin: 8
                     spacing: 8
                     Text {
-                        text: modelData.connected ? "\uF293" : (modelData.paired ? "\uF293" : "\uF293")
+                        text: "\uF293"
                         color: modelData.connected ? Theme.Yoake.slateBlue
                              : modelData.paired ? Theme.Yoake.fgDim : Theme.Yoake.muted
                         font.family: Theme.Fonts.family
@@ -215,9 +219,10 @@ ColumnLayout {
                         elide: Text.ElideRight
                         Layout.fillWidth: true
                     }
+                    // Status mark: check = connected, dot = paired (matches Wi-Fi panel)
                     Text {
-                        text: modelData.connected ? "\uF293" : (modelData.paired ? "\uF293" : "\uF293")
-                        color: Theme.Yoake.muted
+                        text: modelData.connected ? "" : (modelData.paired ? "\u00B7" : "")
+                        color: modelData.connected ? Theme.Yoake.slateBlue : Theme.Yoake.muted
                         font.family: Theme.Fonts.family
                         font.pixelSize: Theme.Fonts.sizeSm
                     }

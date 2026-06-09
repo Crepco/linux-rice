@@ -58,7 +58,7 @@ Scope {
             } else {
                 root.authError = true
                 root.status = "wrong"
-                root.input_ = ""
+                hiddenInput.text = ""   // also clears input_; stale text would prefix the next attempt
                 resetTimer.start()
             }
         }
@@ -66,6 +66,7 @@ Scope {
         onError: (err) => {
             root.authError = true
             root.status = "auth error"
+            hiddenInput.text = ""
             resetTimer.start()
         }
     }

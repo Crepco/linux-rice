@@ -1,27 +1,24 @@
 # Yazi theme — Yoake (夜明け)
 # peach #e2aaa1  ·  cream #e9cdb0  ·  mauve #9e8c9c  ·  slate #6f7288
 # bg #20202f  ·  surface #363849  ·  border #4d4f63  ·  fg #e9cdb0
+# Schema follows yazi ≥ 25.5.28 ([mgr]/[indicator]/[mode]/[tabs]/[pick]/[cmp])
 
-[manager]
+[mgr]
 cwd = { fg = "#e2aaa1" }
-
-# Hovered
-hovered         = { fg = "#20202f", bg = "#e2aaa1" }
-preview_hovered = { underline = true }
 
 # Find
 find_keyword  = { fg = "#e9cdb0", italic = true }
 find_position = { fg = "#9e8c9c", bg = "reset", italic = true }
+
+# Symlink target (shown in the path bar)
+symlink_target = { fg = "#7a8ca8", italic = true }
 
 # Marker
 marker_copied   = { fg = "#90a89c", bg = "#90a89c" }
 marker_cut      = { fg = "#c08080", bg = "#c08080" }
 marker_marked   = { fg = "#7a8ca8", bg = "#7a8ca8" }
 marker_selected = { fg = "#e9cdb0", bg = "#e9cdb0" }
-
-# Tab
-tab_active   = { fg = "#20202f", bg = "#e2aaa1" }
-tab_inactive = { fg = "#e9cdb0", bg = "#363849" }
+marker_symbol   = "│"
 
 # Count
 count_copied   = { fg = "#20202f", bg = "#90a89c" }
@@ -35,29 +32,71 @@ border_style  = { fg = "#4d4f63" }
 # Highlighting
 syntect_theme = ""
 
-[status]
-separator_open  = ""
-separator_close = ""
-separator_style = { fg = "#363849", bg = "#363849" }
+[indicator]
+parent  = { fg = "#20202f", bg = "#e2aaa1" }
+current = { fg = "#20202f", bg = "#e2aaa1" }
+preview = { underline = true }
 
-# Mode
-mode_normal = { fg = "#20202f", bg = "#e2aaa1", bold = true }
-mode_select = { fg = "#20202f", bg = "#e9cdb0", bold = true }
-mode_unset  = { fg = "#20202f", bg = "#9e8c9c", bold = true }
+[tabs]
+active   = { fg = "#20202f", bg = "#e2aaa1", bold = true }
+inactive = { fg = "#e9cdb0", bg = "#363849" }
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
+
+[mode]
+normal_main = { fg = "#20202f", bg = "#e2aaa1", bold = true }
+normal_alt  = { fg = "#e2aaa1", bg = "#363849" }
+select_main = { fg = "#20202f", bg = "#e9cdb0", bold = true }
+select_alt  = { fg = "#e9cdb0", bg = "#363849" }
+unset_main  = { fg = "#20202f", bg = "#9e8c9c", bold = true }
+unset_alt   = { fg = "#9e8c9c", bg = "#363849" }
+
+[status]
+overall   = {}
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+
+# Permissions
+perm_sep   = { fg = "#4d4f63" }
+perm_type  = { fg = "#7a8ca8" }
+perm_read  = { fg = "#e9cdb0" }
+perm_write = { fg = "#c08080" }
+perm_exec  = { fg = "#90a89c" }
 
 # Progress
 progress_label  = { fg = "#e9cdb0", bold = true }
 progress_normal = { fg = "#e2aaa1", bg = "#363849" }
 progress_error  = { fg = "#c08080", bg = "#363849" }
 
-# Permissions
-permissions_t = { fg = "#7a8ca8" }
-permissions_r = { fg = "#e9cdb0" }
-permissions_w = { fg = "#c08080" }
-permissions_x = { fg = "#90a89c" }
-permissions_s = { fg = "#9e8c9c" }
+[which]
+mask            = { bg = "#20202f" }
+cand            = { fg = "#e2aaa1" }
+rest            = { fg = "#9e8c9c" }
+desc            = { fg = "#e9cdb0" }
+separator       = "  "
+separator_style = { fg = "#4d4f63" }
 
-[select]
+[confirm]
+border  = { fg = "#e2aaa1" }
+title   = { fg = "#e2aaa1" }
+btn_yes = { reversed = true }
+btn_no  = {}
+
+[spot]
+border   = { fg = "#e2aaa1" }
+title    = { fg = "#e2aaa1" }
+tbl_col  = { fg = "#7a8ca8" }
+tbl_cell = { fg = "#e9cdb0", reversed = true }
+
+[notify]
+title_info  = { fg = "#90a89c" }
+title_warn  = { fg = "#e9cdb0" }
+title_error = { fg = "#c08080" }
+icon_info   = ""
+icon_warn   = ""
+icon_error  = ""
+
+[pick]
 border   = { fg = "#e2aaa1" }
 active   = { fg = "#e2aaa1" }
 inactive = {}
@@ -68,7 +107,7 @@ title    = {}
 value    = {}
 selected = { reversed = true }
 
-[completion]
+[cmp]
 border   = { fg = "#e2aaa1" }
 active   = { bg = "#363849" }
 inactive = {}
@@ -78,62 +117,42 @@ border  = { fg = "#e2aaa1" }
 title   = {}
 hovered = { underline = true }
 
-[which]
-mask            = { bg = "#20202f" }
-cand            = { fg = "#e2aaa1" }
-rest            = { fg = "#9e8c9c" }
-desc            = { fg = "#e9cdb0" }
-separator       = "  "
-separator_style = { fg = "#4d4f63" }
-
 [help]
 on      = { fg = "#e2aaa1" }
-exec    = { fg = "#e9cdb0" }
+run     = { fg = "#e9cdb0" }
 desc    = { fg = "#9e8c9c" }
 hovered = { bg = "#363849", bold = true }
 footer  = { fg = "#20202f", bg = "#e9cdb0" }
-
-[notify]
-title_info = { fg = "#90a89c" }
-title_warn = { fg = "#e9cdb0" }
-title_error = { fg = "#c08080" }
-icon_info   = ""
-icon_warn   = ""
-icon_error  = ""
 
 [filetype]
 rules = [
     # Images
     { mime = "image/*", fg = "#e2aaa1" },
     # Media
-    { mime = "video/*", fg = "#e9cdb0" },
-    { mime = "audio/*", fg = "#e9cdb0" },
+    { mime = "{audio,video}/*", fg = "#e9cdb0" },
     # Archives
-    { mime = "application/zip",             fg = "#9e8c9c" },
-    { mime = "application/gzip",            fg = "#9e8c9c" },
-    { mime = "application/x-tar",           fg = "#9e8c9c" },
-    { mime = "application/x-bzip",          fg = "#9e8c9c" },
-    { mime = "application/x-bzip2",         fg = "#9e8c9c" },
-    { mime = "application/x-7z-compressed", fg = "#9e8c9c" },
-    { mime = "application/x-rar",           fg = "#9e8c9c" },
+    { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#9e8c9c" },
     # Documents
-    { mime = "application/pdf", fg = "#c08080" },
+    { mime = "application/{pdf,doc,rtf}", fg = "#c08080" },
+    # Special files
+    { url = "*", is = "exec",   fg = "#90a89c" },
+    { url = "*", is = "orphan", fg = "#c08080", italic = true },
     # Empty / fallback
-    { mime = "inode/x-empty", fg = "#6f7288", italic = true },
+    { mime = "inode/{empty,x-empty}", fg = "#6f7288", italic = true },
     { url = "*",  fg = "#e9cdb0" },
     { url = "*/", fg = "#e2aaa1", bold = true },
 ]
 
 [icon]
-prepend_rules = [
-    { url = ".git",          text = "" },
-    { url = "Downloads/",    text = "" },
-    { url = "Documents/",    text = "" },
-    { url = "Pictures/",     text = "" },
-    { url = "Music/",        text = "" },
-    { url = "Videos/",       text = "" },
-    { url = "Desktop/",      text = "" },
-    { url = ".config/",      text = "" },
-    { url = ".cache/",       text = "" },
-    { url = ".local/",       text = "" },
+prepend_dirs = [
+    { name = ".git",      text = "" },
+    { name = "Downloads", text = "" },
+    { name = "Documents", text = "" },
+    { name = "Pictures",  text = "" },
+    { name = "Music",     text = "" },
+    { name = "Videos",    text = "" },
+    { name = "Desktop",   text = "" },
+    { name = ".config",   text = "" },
+    { name = ".cache",    text = "" },
+    { name = ".local",    text = "" },
 ]

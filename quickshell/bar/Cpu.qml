@@ -18,7 +18,7 @@ Rectangle {
     function readStat(textData) {
         const firstLine = textData.split("\n")[0];
         const parts = firstLine.split(/\s+/).slice(1).map(parseFloat);
-        const idle = parts[3];
+        const idle = parts[3] + (parts[4] || 0);  // idle + iowait
         const total = parts.reduce((a, b) => a + b, 0);
         if (lastTotal > 0) {
             const dIdle = idle - lastIdle;

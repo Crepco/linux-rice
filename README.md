@@ -22,44 +22,36 @@ The desktop shell — bar, launcher, notifications, on-screen display, and locks
 
 - **Compositor:** Hyprland
 - **Shell (bar / launcher / notifications / OSD / lockscreen):** Quickshell
-- **Wallpaper:** swww (started via `awww` in [hyprland/hyprland.conf](hyprland/hyprland.conf))
+- **Wallpaper:** awww (the swww successor, started in [hyprland/hyprland.conf](hyprland/hyprland.conf))
 - **Terminal:** kitty
 - **Shell prompt fetch:** fastfetch
-- **File manager:** yazi (TUI) / dolphin (GUI)
+- **File manager:** yazi (TUI) / nautilus (GUI)
 - **Browser:** brave
 - **Font:** JetBrainsMono Nerd Font
+- **Icons:** Papirus-Dark (used by GTK apps and the Quickshell launcher)
 
 ## Required packages (Arch)
 
-```bash
-sudo pacman -S hyprland quickshell kitty fastfetch btop yazi \
-               brightnessctl wireplumber playerctl networkmanager bluez bluez-utils \
-               grim slurp wl-clipboard ttf-jetbrains-mono-nerd dolphin
+All in the official repos — no AUR needed:
 
-# AUR (via yay/paru)
-yay -S swww nm-connection-editor
+```bash
+sudo pacman -S hyprland quickshell kitty fastfetch btop yazi awww \
+               brightnessctl wireplumber playerctl networkmanager bluez bluez-utils \
+               grim slurp wl-clipboard ttf-jetbrains-mono-nerd nautilus mpv \
+               papirus-icon-theme hyprpolkitagent nm-connection-editor
 ```
 
-> `nm-connection-editor` is used by the Quickshell Wi-Fi popup as a fallback for connecting to new secured networks.
+> `nm-connection-editor` is used by the Quickshell Wi-Fi popup as a fallback for connecting to new secured networks. `mpv` backs yazi's media opener. Optional extras: `cliphist` (clipboard history) and `hypridle` (auto-lock) — pre-wired but commented out in [hyprland/hyprland.conf](hyprland/hyprland.conf).
 
 ## Install
-
-Symlink the folders into `~/.config/`:
 
 ```bash
 git clone https://github.com/Crepco/linux-rice.git
 cd linux-rice
-
-ln -s "$PWD/hyprland"  ~/.config/hypr       # note: target is "hypr", not "hyprland"
-ln -s "$PWD/quickshell" ~/.config/quickshell
-ln -s "$PWD/kitty"     ~/.config/kitty
-ln -s "$PWD/fastfetch" ~/.config/fastfetch
-ln -s "$PWD/gtk"       ~/.config/gtk-3.0     # adjust to your GTK setup
-ln -s "$PWD/btop"      ~/.config/btop
-ln -s "$PWD/yazi"      ~/.config/yazi
+./install.sh
 ```
 
-> The repo folder is named `hyprland/` for clarity, but Hyprland reads from `~/.config/hypr/`.
+[install.sh](install.sh) symlinks each folder into `~/.config/` (backing up anything already there). The repo folder is named `hyprland/` for clarity, but it is linked to `~/.config/hypr/` — that's where Hyprland reads from.
 
 ## Notes
 

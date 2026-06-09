@@ -30,7 +30,7 @@ Item {
                 } else {
                     const parts = line.split(":")
                     netState = parts[0]
-                    ssid = parts[2] || ""
+                    ssid = parts.slice(2).join(":")  // SSIDs may contain ':'
                 }
             }
         }

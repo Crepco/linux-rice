@@ -19,7 +19,8 @@ Place these files in `~/.config/hypr/` (the tool reads from `hypr/`, not `hyprla
 From [hyprland.conf](hyprland.conf):
 
 - `quickshell` — the desktop shell (bar, launcher, notifications, OSD, lockscreen)
-- `swww` (via `awww`) — sets `~/Pictures/wallpapers/wallpaper.png` with a fade transition
+- `awww` (the swww successor) — sets `~/Pictures/wallpapers/wallpaper.png` with a fade transition
+- `hyprpolkitagent` — polkit auth agent so GUI apps can show password prompts
 
 ## Keybinds
 
@@ -31,11 +32,12 @@ From [hyprland.conf](hyprland.conf):
 | --- | --- |
 | `SUPER + T` | Launch terminal (kitty) |
 | `SUPER + B` | Launch browser (brave) |
-| `SUPER + E` | Launch file manager (dolphin) |
+| `SUPER + E` | Launch file manager (nautilus) — `SHIFT` for yazi |
 | `SUPER + R` | App launcher (Quickshell — `qs ipc call launcher toggle`) |
 | `SUPER + L` | Lock screen (Quickshell — `qs ipc call lock activate`) |
 | `SUPER + W` | Kill active window |
 | `SUPER + X` | Toggle floating |
+| `SUPER + F` | Fullscreen — `SHIFT` for maximize (bar stays visible) |
 | `SUPER + P` | Pseudo tile (dwindle) |
 | `SUPER + J` | Toggle split direction (dwindle) |
 | `SUPER + M` | **Exit Hyprland** |
@@ -56,6 +58,7 @@ From [hyprland.conf](hyprland.conf):
 | `SUPER + S` | Toggle scratchpad (special workspace `magic`) |
 | `SUPER + scroll` | Cycle workspaces |
 | `SUPER + arrow keys` | Move focus |
+| `SUPER + CTRL + arrow keys` | Move window within the layout |
 | `SUPER + LMB drag` | Move window |
 | `SUPER + RMB drag` | Resize window |
 | 3-finger horizontal swipe | Switch workspace |
@@ -71,20 +74,23 @@ From [hyprland.conf](hyprland.conf):
 - **Gaps:** in 1px, out 2px
 - **Borders:** 2px, gradient `#e2aaa1 → #e9cdb0 @ 45°` (peach → cream) active, dim `#4d4f63` inactive
 - **Rounding:** 10px (power 2)
-- **Blur:** size 3, 1 pass
+- **Blur:** size 6, 3 passes
 - **Opacity:** active 1.0, inactive 0.95
-- **Screen shader:** [shaders/vibrance.glsl](shaders/vibrance.glsl) (boosts saturation)
+- **Screen shader:** [shaders/vibrance.glsl](shaders/vibrance.glsl) (boosts saturation to 1.6)
 - **Layout:** dwindle with `preserve_split` and pseudotile
 
-## Window rules
+## Window & layer rules
 
 | Rule | Target |
 | --- | --- |
+| Suppress maximize requests | all windows |
+| Float | xdg portal file pickers |
 | Opacity `0.60 / 0.50` (so the blurred wallpaper bleeds through) | `class:Spotify` |
+| Blur (frosted glass behind the translucent bar island / popups) | Quickshell layers |
 
 ## lockscreen — Quickshell
 
-Implemented in QML at [../quickshell/lock/LockScreen.qml](../quickshell/lock/LockScreen.qml), triggered via `qs ipc call lock activate`. PAM auth references the `hyprlock` PAM config (`/etc/pam.d/hyprlock`) — keep the `hyprlock` package installed for that file, or swap the `config:` line in `LockScreen.qml` to `system-auth` if uninstalling.
+Implemented in QML at [../quickshell/lock/LockScreen.qml](../quickshell/lock/LockScreen.qml), triggered via `qs ipc call lock activate`. PAM auth uses the standard `system-auth` config (`/etc/pam.d/system-auth`) — no extra packages needed.
 
 ## hyprpaper
 

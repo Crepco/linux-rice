@@ -23,7 +23,17 @@ Scope {
             const comment = (e.comment || "").toLowerCase()
             if (!q || name.includes(q) || comment.includes(q)) out.push(e)
         }
-        out.sort((a, b) => (a.name || "").toLowerCase().localeCompare((b.name || "").toLowerCase()))
+        // Prefix matches first, then alphabetical
+        out.sort((a, b) => {
+            const an = (a.name || "").toLowerCase()
+            const bn = (b.name || "").toLowerCase()
+            if (q) {
+                const ap = an.startsWith(q) ? 0 : 1
+                const bp = bn.startsWith(q) ? 0 : 1
+                if (ap !== bp) return ap - bp
+            }
+            return an.localeCompare(bn)
+        })
         return out
     }
 
@@ -75,7 +85,7 @@ Scope {
                 width: 600
                 height: Math.min(parent.height - 80, 520)
                 radius: 14
-                color: Theme.Yoake.bg
+                color: Theme.Yoake.alpha(Theme.Yoake.bg, 0.92)
                 border.color: Theme.Yoake.peach
                 border.width: 1
 

@@ -68,7 +68,11 @@ ColumnLayout {
         id: actionProc
         onExited: refreshTimer.restart()
     }
-    Timer { id: refreshTimer; interval: 600; onTriggered: root.refresh() }
+    Timer {
+        id: refreshTimer
+        interval: 600
+        onTriggered: { root.refresh(); interval = 600 }  // restore after one-off longer waits
+    }
 
     function run(cmd)        { actionProc.command = ["bash", "-c", cmd]; actionProc.running = true }
     function launch(cmd)     { Quickshell.execDetached(["bash", "-c", cmd]) }

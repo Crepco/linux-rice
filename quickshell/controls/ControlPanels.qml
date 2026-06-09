@@ -44,7 +44,7 @@ Scope {
                 width: 320
                 implicitHeight: content.implicitHeight + 28
                 radius: 12
-                color: Theme.Yoake.bg
+                color: Theme.Yoake.alpha(Theme.Yoake.bg, 0.92)
                 border.color: Theme.Yoake.peach
                 border.width: 1
 

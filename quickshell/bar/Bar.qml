@@ -34,7 +34,9 @@ Scope {
                 anchors.topMargin: 6
                 height: 30
                 radius: 10
-                color: Theme.Yoake.bg
+                // Slightly translucent — Hyprland's quickshell layerrule blurs
+                // what's behind, giving the island a frosted-glass look.
+                color: Theme.Yoake.alpha(Theme.Yoake.bg, 0.85)
                 border.color: Theme.Yoake.alpha(Theme.Yoake.peach, 0.20)
                 border.width: 1
                 implicitWidth: content.implicitWidth + 24
@@ -50,6 +52,7 @@ Scope {
                     Clock {}
                     Separator {}
                     Cpu {}
+                    Mem {}
                     Backlight {}
                     Network {}
                     PowerButton {}

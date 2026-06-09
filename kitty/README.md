@@ -13,10 +13,10 @@
 
 From [kitty.conf](kitty.conf):
 
-- **Font:** JetBrainsMono Nerd Font, 11pt
-- **Cursor:** block, hides after 2s of inactivity
-- **Line height:** 120%
-- **Background opacity:** 0.75 (transparent — relies on Hyprland blur)
+- **Font:** JetBrainsMono Nerd Font, 11pt, 110% cell height
+- **Cursor:** beam with a fading trail; mouse pointer hides after 2s
+- **Background opacity:** 0.65 (transparent — relies on Hyprland blur)
+- **Scrollback:** 10 000 lines
 - **`confirm_os_window_close`:** disabled
 
 ## Color scheme — Yoake (夜明け)

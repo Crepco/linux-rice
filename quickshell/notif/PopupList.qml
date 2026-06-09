@@ -37,7 +37,8 @@ Scope {
             implicitHeight: 600
             color: "transparent"
             exclusionMode: ExclusionMode.Ignore
-            mask: Region {}  // pass clicks through outside popup area
+            // Only the stacked cards accept clicks; everywhere else passes through.
+            mask: Region { item: stack }
 
             ColumnLayout {
                 id: stack
