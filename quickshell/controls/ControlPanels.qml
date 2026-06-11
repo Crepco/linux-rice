@@ -36,6 +36,7 @@ Scope {
             readonly property bool isClock: Theme.Controls.open === "clock"
             // System menu drops on the left under the Arch icon; pills on the right.
             readonly property bool leftSide: Theme.Controls.open === "system"
+                                          || Theme.Controls.open === "monitors"
 
             // Click-away + Escape to dismiss (also dims the screen for power)
             Item {
@@ -85,6 +86,7 @@ Scope {
                     sourceComponent: {
                         switch (Theme.Controls.open) {
                             case "system":     return systemC
+                            case "monitors":   return monitorsC
                             case "power":      return powerC
                             case "clock":      return clockC
                             case "volume":     return volumeC
@@ -98,6 +100,7 @@ Scope {
             }
 
             Component { id: systemC;     SystemMenu {} }
+            Component { id: monitorsC;   MonitorsPanel {} }
             Component { id: powerC;      PowerMenu {} }
             Component { id: clockC;      ClockPanel {} }
             Component { id: volumeC;     VolumePanel {} }

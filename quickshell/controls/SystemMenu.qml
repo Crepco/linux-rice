@@ -52,4 +52,28 @@ ColumnLayout {
 
     // ── Bluetooth ──
     BluetoothPanel { Layout.fillWidth: true }
+
+    Rectangle { Layout.fillWidth: true; Layout.preferredHeight: 1; color: Theme.Yoake.border }
+
+    // ── Display settings ──
+    Rectangle {
+        Layout.fillWidth: true
+        Layout.preferredHeight: 28
+        radius: 6
+        color: displayMa.containsMouse ? Theme.Yoake.surface : Theme.Yoake.surfaceAlt
+        Text {
+            anchors.centerIn: parent
+            text: "󰍹  Display settings"
+            color: Theme.Yoake.fgDim
+            font.family: Theme.Fonts.family
+            font.pixelSize: Theme.Fonts.sizeSm
+        }
+        MouseArea {
+            id: displayMa
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape: Qt.PointingHandCursor
+            onClicked: Theme.Controls.show("monitors")
+        }
+    }
 }

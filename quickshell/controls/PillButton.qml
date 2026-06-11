@@ -6,12 +6,14 @@ Rectangle {
     id: root
     property string text: ""
     property color accent: Theme.Yoake.peach
+    property bool active: false
     signal tapped()
 
     implicitHeight: 24
     implicitWidth: label.implicitWidth + 18
     radius: 6
-    color: ma.containsMouse ? Theme.Yoake.alpha(accent, 0.22) : Theme.Yoake.surfaceAlt
+    color: ma.containsMouse || root.active
+         ? Theme.Yoake.alpha(accent, 0.22) : Theme.Yoake.surfaceAlt
 
     Text {
         id: label
